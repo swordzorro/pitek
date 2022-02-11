@@ -1,8 +1,14 @@
 @keyframes slide-down {
   0% {
-    opacity: 0;
+    height: 0;
+  }
+  50% {
+    height: 100%;
+  }
+  70% {
+    top: 32px;
   }
   100% {
-    opacity: 100%;
+    top: 160px;
   }
 }

@@ -16,7 +16,12 @@ export default function Home() {
           <source src="/mp4/banner_fullhd.mp4" />
         </video>
         <div className={styles.bannerText}>Digital Product Development</div>
+        <div className={styles.exploreMore}>
+          <p>Explore more</p>
+          <div className={styles.line}></div>
+        </div>
       </div>
+      <section className={styles.about}></section>
     </div>
   );
 }
