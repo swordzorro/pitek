@@ -1,0 +1,29 @@
+@import "./sass/variables";
+@import "./sass/animation";
+.container {
+  .bannerContainer {
+    position: relative;
+    .bannerVideo {
+      width: auto;
+      height: 100%;
+      margin-top: -4%;
+    }
+    .bannerText {
+      position: absolute;
+      top: 52%;
+      left: 50%;
+      transform: translateX(-50%);
+
+      font-weight: bold;
+      font-size: 32px;
+      line-height: 120%;
+      text-transform: uppercase;
+      color: #fff;
+      color: white;
+
+      white-space: nowrap;
+
+      animation: slide-down 2s infinite;
+    }
+  }
+}
