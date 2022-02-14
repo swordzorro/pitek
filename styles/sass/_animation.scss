@@ -1,6 +1,7 @@
 @keyframes slide-down {
   0% {
     height: 0;
+    top: 32px;
   }
   50% {
     height: 100%;
@@ -10,5 +11,42 @@
   }
   100% {
     top: 160px;
+  }
+}
+
+@keyframes spriteMoveX {
+  from {
+    background-position-x: 0;
+  }
+  to {
+    background-position-x: -6000px;
+  }
+}
+@keyframes spriteMoveY {
+  from {
+    background-position-y: 0;
+  }
+  to {
+    background-position-y: -4800px;
+  }
+}
+
+@keyframes slideIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(-60px);
+  }
+}
+@keyframes slideOut {
+  0% {
+    transform: translateY(-60px);
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-120px);
   }
 }
