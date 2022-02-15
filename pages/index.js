@@ -23,11 +23,10 @@ export default function Home() {
         }
         return updatedCounter;
       }); // use callback function to set the state
-    }, 1500);
+    }, 2000);
     return () => clearInterval(timer); // cleanup the timer
   }, []);
 
-  console.log(slideText);
   const { scrollY } = useWindowScrollPositions();
   return (
     <div className={styles.container}>
@@ -86,7 +85,10 @@ export default function Home() {
             new technology trends have effective experiences, tailored to their
             needs.
           </p>
-          <div className={styles.aboutLink}>see more about us</div>
+          <div className={styles.aboutLink}>
+            <a>see more about us</a>
+            <div className={styles.line}></div>
+          </div>
         </div>
       </section>
     </div>

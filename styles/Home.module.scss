@@ -112,10 +112,14 @@
       h2 {
         position: relative;
         margin-bottom: 32px;
+        color: $primary-blue;
       }
-
+      p {
+        color: $s-gray;
+        font-size: 16px;
+      }
       .textSlider {
-        color: red;
+        color: $primary-red;
         display: inline-flex;
         width: 260px;
 
@@ -148,6 +152,26 @@
 
         margin-top: 64px;
         cursor: pointer;
+
+        display: flex;
+        align-items: center;
+        margin-left: -16px;
+
+        > * {
+          margin-left: 16px;
+        }
+
+        &:hover > .line {
+          width: 20px;
+        }
+
+        .line {
+          width: 80px;
+          height: 1px;
+          background-color: $primary-red;
+
+          transition: 0.8s all ease;
+        }
       }
     }
   }
