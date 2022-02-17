@@ -23,7 +23,7 @@ export default function Home() {
         }
         return updatedCounter;
       }); // use callback function to set the state
-    }, 2000);
+    }, 3000);
     return () => clearInterval(timer); // cleanup the timer
   }, []);
 
@@ -88,6 +88,101 @@ export default function Home() {
           <div className={styles.aboutLink}>
             <a>see more about us</a>
             <div className={styles.line}></div>
+          </div>
+        </div>
+      </section>
+      {/* TODO: service */}
+      <section className={styles.service}>
+        <div className={styles.circlePattern}>
+          <Image
+            src="/home-page/circle-pattern-320x320.svg"
+            width={320}
+            height={320}
+            alt=""
+          />
+        </div>
+        <div className={styles.arrowPattern}>
+          <Image
+            src="/home-page/arrow-pattern-160x160.svg"
+            width={160}
+            height={160}
+            alt=""
+          />
+        </div>
+        <div className={styles.plusPattern}>
+          <Image
+            src="/home-page/plus-pattern-320x160.svg"
+            width={320}
+            height={160}
+            alt=""
+          />
+        </div>
+        <div className={styles.contentWrapper}>
+          <h1>Our service</h1>
+          <div className={styles.cards}>
+            <div className={styles.card}>
+              <div className={styles.icon}>
+                <Image
+                  src={"/home-page/glassmorphims-dev.png"}
+                  width={120}
+                  height={120}
+                  alt=""
+                />
+              </div>
+              <h5>
+                Software <br /> development
+              </h5>
+              <p>
+                We architect, build, and deliver digital products entirely
+                in-house.
+              </p>
+              <p>Product Development</p>
+              <p>CMS Integration</p>
+              <p>3rd Party Integration</p>
+              <p>API Design & Implementation</p>
+            </div>
+            <div className={styles.card}>
+              <div className={styles.icon}>
+                <Image
+                  src={"/home-page/glassmorphims-iot.png"}
+                  width={120}
+                  height={120}
+                  alt=""
+                />
+              </div>
+              <h5>
+                IoT software <br /> and services
+              </h5>
+              <p>
+                We architect, build, and deliver digital products entirely
+                in-house.
+              </p>
+              <p>Product Development</p>
+              <p>CMS Integration</p>
+              <p>3rd Party Integration</p>
+              <p>API Design & Implementation</p>
+            </div>
+            <div className={styles.card}>
+              <div className={styles.icon}>
+                <Image
+                  src={"/home-page/glassmorphims-solution.png"}
+                  width={120}
+                  height={120}
+                  alt=""
+                />
+              </div>
+              <h5>
+                Business process <br /> solution
+              </h5>
+              <p>
+                We architect, build, and deliver digital products entirely
+                in-house.
+              </p>
+              <p>Product Development</p>
+              <p>CMS Integration</p>
+              <p>3rd Party Integration</p>
+              <p>API Design & Implementation</p>
+            </div>
           </div>
         </div>
       </section>

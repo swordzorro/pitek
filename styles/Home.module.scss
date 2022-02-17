@@ -1,6 +1,7 @@
 @import "./sass/variables";
 @import "./sass/animation";
 .container {
+  overflow: hidden;
   // resuse
   .contentWrapper {
     max-width: 1360px;
@@ -117,6 +118,7 @@
       p {
         color: $s-gray;
         font-size: 16px;
+        max-width: 440px;
       }
       .textSlider {
         color: $primary-red;
@@ -173,6 +175,63 @@
           transition: 0.8s all ease;
         }
       }
+    }
+  }
+  // TODO: service
+  .service {
+    padding-bottom: 10%;
+    position: relative;
+    h1 {
+      text-align: center;
+      color: $primary-red;
+      margin-bottom: 80px;
+    }
+    .cards {
+      display: flex;
+      justify-content: center;
+      margin-left: -80px;
+
+      > * {
+        margin-left: 80px;
+      }
+      .card {
+        display: flex;
+        flex-direction: column;
+        max-width: 400px;
+
+        background: #ffffff;
+        box-shadow: 0px 8px 32px rgba(0, 128, 160, 0.08);
+        border-radius: 16px;
+
+        padding: 60px;
+        .icon {
+          margin-bottom: 32px;
+        }
+        h5 {
+          margin-bottom: 16px;
+          background: linear-gradient(274.9deg, #002266 46.05%, #ff3355 100%);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+        }
+      }
+    }
+    .plusPattern {
+      position: absolute;
+      bottom: -80px;
+      left: 50%;
+      z-index: -1;
+    }
+    .circlePattern {
+      position: absolute;
+      top: 6.25%;
+      right: -180px;
+      z-index: -1;
+    }
+    .arrowPattern {
+      position: absolute;
+      bottom: 7.3%;
+      left: 9.3%;
+      z-index: -1;
     }
   }
 }
