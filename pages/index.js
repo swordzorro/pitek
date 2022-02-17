@@ -4,6 +4,9 @@ import styles from "../styles/Home.module.scss";
 import { useInView } from "react-intersection-observer";
 import { useWindowScrollPositions } from "../utils/useWindowScrollPositions";
 import { useEffect, useState } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+
+import { Pagination, Navigation } from "swiper";
 
 const slideTextArr = ["unique", "modern", "creative"];
 
@@ -44,7 +47,7 @@ export default function Home() {
         <div
           className={`${styles.exploreMore} ${scrollY > 0 ? styles.gone : ""}`}
         >
-          <p>Explore more</p>
+          <p>Explore</p>
           <div className={styles.line}></div>
         </div>
       </div>
@@ -85,7 +88,7 @@ export default function Home() {
             new technology trends have effective experiences, tailored to their
             needs.
           </p>
-          <div className={styles.aboutLink}>
+          <div className={styles.link}>
             <a>see more about us</a>
             <div className={styles.line}></div>
           </div>
@@ -184,6 +187,133 @@ export default function Home() {
               <p>API Design & Implementation</p>
             </div>
           </div>
+        </div>
+      </section>
+      <section className={`${styles.project}`}>
+        <div className={styles.projectBg}>
+          <video loop muted autoPlay className={styles.bannerVideo}>
+            <source src="/mp4/background.mp4" />
+          </video>
+        </div>
+        <div className={styles.projectContainer}>
+          <div className={`${styles.projectContent}`}>
+            <h1>PROJECTS</h1>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit ut
+              aliquam, purus sit amet luctus venenatis.
+            </p>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit ut
+              aliquam, purus sit amet luctus venenatis.
+            </p>
+            <div className={styles.link}>
+              <a>brief us</a>
+              <div className={styles.line}></div>
+            </div>
+          </div>
+          <Swiper
+            slidesPerView={3}
+            spaceBetween={80}
+            speed={1000}
+            loop={true}
+            loopFillGroupWithBlank={true}
+            watchOverflow={true}
+            navigation={true}
+            modules={[Navigation]}
+            className={styles.mySwiper}
+          >
+            <SwiperSlide className={styles.projectCard}>
+              <Image
+                src={"/projects/Ecoe.png"}
+                width={440}
+                height={640}
+                objectFit="contain"
+                alt=""
+              />
+              <div className={styles.info}>
+                <p>Mobile App</p>
+                <h2>Ecoe</h2>
+              </div>
+            </SwiperSlide>
+            <SwiperSlide className={styles.projectCard}>
+              {" "}
+              <Image
+                src={"/projects/Pinnow.png"}
+                width={440}
+                height={640}
+                objectFit="contain"
+                alt=""
+              />
+              <div className={styles.info}>
+                <p>Mobile App</p>
+                <h2>Pinnow</h2>
+              </div>
+            </SwiperSlide>
+            <SwiperSlide className={styles.projectCard}>
+              <Image
+                src={"/projects/PiBuilding.png"}
+                width={440}
+                height={640}
+                objectFit="contain"
+                alt=""
+              />
+              <div className={styles.info}>
+                <p>Desktop App</p>
+                <h2>PiBuilding</h2>
+              </div>
+            </SwiperSlide>
+            <SwiperSlide className={styles.projectCard}>
+              <Image
+                src={"/projects/Ecoin.png"}
+                width={440}
+                height={640}
+                objectFit="contain"
+                alt=""
+              />
+              <div className={styles.info}>
+                <p>Platform</p>
+                <h2>Ecoin</h2>
+              </div>
+            </SwiperSlide>
+            <SwiperSlide className={styles.projectCard}>
+              <Image
+                src={"/projects/Ecoe.png"}
+                width={440}
+                height={640}
+                objectFit="contain"
+                alt=""
+              />
+              <div className={styles.info}>
+                <p>New App</p>
+                <h3>
+                  Your project
+                  <br /> can be here
+                </h3>
+              </div>
+            </SwiperSlide>
+          </Swiper>
+          {/* <div className={styles.projectCards}>
+              <div className={styles.projectCard}>
+                <p>Mobile App</p>
+                <h2>Ecoe</h2>
+              </div>
+              <div className={styles.projectCard}>
+                <p>Mobile App</p>
+                <h2>Ecoe</h2>
+              </div>
+              <div className={styles.projectCard}>
+                <p>Mobile App</p>
+                <h2>Ecoe</h2>
+              </div>
+              <div className={styles.projectCard}>
+                <p>Mobile App</p>
+                <h2>Ecoe</h2>
+              </div>
+              <div className={styles.projectCard}>
+                <p>Mobile App</p>
+                <h2>Ecoe</h2>
+              </div>
+            </div> */}
         </div>
       </section>
     </div>

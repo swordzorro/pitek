@@ -1,8 +1,69 @@
 @import url("https://fonts.googleapis.com/css2?family=Lexend:wght@100;200;300;400;500;600;700;800;900&display=swap");
 
+@import "swiper/css/pagination";
+@import "swiper/css";
 //  Reset css
 @import "./sass/reset";
 // Typography
 @import "./sass/typography";
 // Animation
 @import "./sass/animation";
+
+.swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-wrapper {
+  transition-timing-function: ease-out;
+}
+
+.swiper-slide {
+  font-size: 18px;
+  /* Center slide text vertically */
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.swiper-slide {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.5s linear, visibility 0.5s linear;
+}
+
+.swiper-slide-active {
+  opacity: 1;
+  visibility: visible;
+}
+.swiper-slide-active + .swiper-slide {
+  opacity: 1;
+  visibility: visible;
+}
+.swiper-slide-active + .swiper-slide + .swiper-slide {
+  opacity: 1;
+  visibility: visible;
+  transition: unset;
+}
+
+.swiper-slide-active + .swiper-slide + .swiper-slide + .swiper-slide {
+  opacity: 1;
+  visibility: visible;
+  transition: unset;
+}
