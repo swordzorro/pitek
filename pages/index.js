@@ -191,10 +191,11 @@ export default function Home() {
       </section>
       <section className={`${styles.project}`}>
         <div className={styles.projectBg}>
-          <video loop muted autoPlay className={styles.bannerVideo}>
+          <video loop muted autoPlay>
             <source src="/mp4/background.mp4" />
           </video>
         </div>
+        <div className={styles.mask}></div>
         <div className={styles.projectContainer}>
           <div className={`${styles.projectContent}`}>
             <h1>PROJECTS</h1>
@@ -309,7 +310,16 @@ export default function Home() {
               </div>
             </SwiperSlide>
             <SwiperSlide className={styles.projectCard}>
-              <div className={styles.projectSpriteSheet}></div>
+              <div className={styles.projectSpriteSheet}>
+                <div></div>
+              </div>
+              {/* <Image
+                src={"/projects/Ecoin.png"}
+                width={440}
+                height={640}
+                objectFit="contain"
+                alt=""
+              /> */}
               <div className={styles.info}>
                 <p>New App</p>
                 <h3>
