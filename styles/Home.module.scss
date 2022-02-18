@@ -246,6 +246,8 @@
       right: 0;
       bottom: 0;
       z-index: -1;
+
+      background-color: #663100;
     }
     .projectContainer {
       display: flex;
@@ -270,6 +272,12 @@
           scroll-snap-align: start;
         }
       }
+      .projectSpriteSheet {
+        width: 440px;
+        height: 640px;
+        background: url("/projects/project_spritesheet.png") 0px 0px;
+        animation: moveX 0.5s steps(10) infinite, moveY 3s steps(6) infinite;
+      }
       .projectContent {
         min-width: 400px;
         width: 400px;
@@ -285,6 +293,29 @@
           margin-top: 64px;
           .line {
             background-color: white;
+          }
+        }
+        .slideNavigate {
+          display: flex;
+          gap: 16px;
+          margin-top: 50%;
+          .slideBtn {
+            padding: 24px;
+            // background: rgba(0, 34, 102, 0.25);
+            border: 2px solid rgba(255, 255, 255, 0.25);
+            // backdrop-filter: blur(8px);
+            border-radius: 50%;
+            // opacity: 0.25;
+            cursor: pointer;
+            z-index: 10;
+
+            &:hover {
+              background-color: red;
+            }
+
+            &.slideRight {
+              transform: rotate(180deg);
+            }
           }
         }
       }

@@ -50,3 +50,22 @@
     transform: translateY(-120px);
   }
 }
+
+//
+
+@keyframes moveX {
+  from {
+    background-position-x: 0;
+  }
+  to {
+    background-position-x: -4400px;
+  }
+}
+@keyframes moveY {
+  from {
+    background-position-y: 0;
+  }
+  to {
+    background-position-y: -3840px;
+  }
+}

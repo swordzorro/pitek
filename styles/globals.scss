@@ -1,7 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Lexend:wght@100;200;300;400;500;600;700;800;900&display=swap");
 
-@import "swiper/css/pagination";
 @import "swiper/css";
+@import "swiper/css/pagination";
+@import "swiper/css/navigation";
+
 //  Reset css
 @import "./sass/reset";
 // Typography
@@ -35,17 +37,18 @@
   align-items: center;
 }
 
-.swiper-slide img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
+// .swiper-slide img {
+//   display: block;
+//   width: 100%;
+//   height: 100%;
+//   object-fit: cover;
+// }
 
 .swiper-slide {
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.5s linear, visibility 0.5s linear;
+  -webkit-transform: translate3d(0, 0, 0);
 }
 
 .swiper-slide-active {
@@ -61,9 +64,19 @@
   visibility: visible;
   transition: unset;
 }
+.swiper-slide.swiper-slide-prev {
+  opacity: 0;
+  transition: opacity 0.5s linear, visibility 0.5s linear;
+}
 
 .swiper-slide-active + .swiper-slide + .swiper-slide + .swiper-slide {
-  opacity: 1;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.5s linear, visibility 0.5s linear;
+}
+
+.swiper-slide-active .content,
+.swiper-slide-duplicate-active {
   visibility: visible;
-  transition: unset;
+  opacity: 1;
 }

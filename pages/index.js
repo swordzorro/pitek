@@ -1,22 +1,22 @@
 import Head from "next/head";
 import Image from "next/image";
-import styles from "../styles/Home.module.scss";
-import { useInView } from "react-intersection-observer";
-import { useWindowScrollPositions } from "../utils/useWindowScrollPositions";
 import { useEffect, useState } from "react";
+import { useInView } from "react-intersection-observer";
+import { Navigation } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
-
-import { Pagination, Navigation } from "swiper";
+import styles from "../styles/Home.module.scss";
+import { useWindowScrollPositions } from "../utils/useWindowScrollPositions";
 
 const slideTextArr = ["unique", "modern", "creative"];
 
 export default function Home() {
   const [slideText, setSlideText] = useState(0);
+  const [swiper, setSwiper] = useState({});
 
   const [aboutRef, aboutInview] = useInView({
     threshold: 0,
   });
-
+  console.log(swiper);
   useEffect(() => {
     let timer = setInterval(() => {
       setSlideText((prevSlideText) => {
@@ -210,17 +210,51 @@ export default function Home() {
               <a>brief us</a>
               <div className={styles.line}></div>
             </div>
+            <div className={styles.slideNavigate}>
+              <div
+                className={`${styles.slideBtn} ${styles.slideLeft}`}
+                onClick={() => {
+                  swiper.slideNext();
+                }}
+              >
+                <Image
+                  src="/icons/caret.svg"
+                  width={32}
+                  height={32}
+                  alt=""
+                  objectFit="contain"
+                />
+              </div>
+              <div
+                className={`${styles.slideBtn} ${styles.slideRight}`}
+                onClick={() => {
+                  swiper.slidePrev();
+                }}
+              >
+                <Image
+                  src="/icons/caret.svg"
+                  width={32}
+                  height={32}
+                  alt=""
+                  objectFit="contain"
+                />
+              </div>
+            </div>
           </div>
           <Swiper
             slidesPerView={3}
             spaceBetween={80}
             speed={1000}
             loop={true}
-            loopFillGroupWithBlank={true}
+            // loopFillGroupWithBlank={true}
             watchOverflow={true}
-            navigation={true}
+            navigation={{
+              nextEl: ".projectCard",
+            }}
             modules={[Navigation]}
             className={styles.mySwiper}
+            onInit={(ev) => setSwiper(ev)}
+            removeClippedSubviews={false}
           >
             <SwiperSlide className={styles.projectCard}>
               <Image
@@ -236,7 +270,6 @@ export default function Home() {
               </div>
             </SwiperSlide>
             <SwiperSlide className={styles.projectCard}>
-              {" "}
               <Image
                 src={"/projects/Pinnow.png"}
                 width={440}
@@ -276,13 +309,7 @@ export default function Home() {
               </div>
             </SwiperSlide>
             <SwiperSlide className={styles.projectCard}>
-              <Image
-                src={"/projects/Ecoe.png"}
-                width={440}
-                height={640}
-                objectFit="contain"
-                alt=""
-              />
+              <div className={styles.projectSpriteSheet}></div>
               <div className={styles.info}>
                 <p>New App</p>
                 <h3>
