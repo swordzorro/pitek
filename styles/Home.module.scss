@@ -2,6 +2,7 @@
 @import "./sass/animation";
 .container {
   overflow: hidden;
+  position: relative;
   // resuse
   .contentWrapper {
     max-width: 1360px;

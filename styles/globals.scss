@@ -10,6 +10,7 @@
 @import "./sass/typography";
 // Animation
 @import "./sass/animation";
+@import "./sass/variables";
 
 // $--projectSpriteWidth: 440px;
 // $--projectSpriteHeight: 640px;
@@ -82,4 +83,23 @@
 .swiper-slide-duplicate-active {
   visibility: visible;
   opacity: 1;
+}
+
+.link-btn-white {
+  all: unset;
+  text-decoration: none;
+  padding: 12px 24px;
+  text-transform: uppercase;
+  background-color: white;
+  color: $primary-red;
+  cursor: pointer;
+}
+.link-btn-red {
+  all: unset;
+  text-decoration: none;
+  padding: 12px 24px;
+  text-transform: uppercase;
+  background-color: $primary-red;
+  color: white;
+  cursor: pointer;
 }

@@ -4,6 +4,7 @@ import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { useInView } from "react-intersection-observer";
 import { Navigation } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
+import Footer from "../components/Footer";
 import styles from "../styles/Home.module.scss";
 import { useWindowScrollPositions } from "../utils/useWindowScrollPositions";
 
@@ -367,6 +368,7 @@ export default function Home() {
             </div> */}
         </div>
       </section>
+      <Footer />
     </div>
   );
 }
