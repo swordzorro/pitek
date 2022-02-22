@@ -1,6 +1,6 @@
 import Head from "next/head";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { useInView } from "react-intersection-observer";
 import { Navigation } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -12,11 +12,25 @@ const slideTextArr = ["unique", "modern", "creative"];
 export default function Home() {
   const [slideText, setSlideText] = useState(0);
   const [swiper, setSwiper] = useState({});
+  const projectSpriteRef = useRef();
+
+  // console.log(projectSpriteRef?.current?.getBoundingClientRect());
+
+  useEffect(() => {
+    const root = document?.documentElement;
+    root?.style.setProperty(
+      "--projectSpriteWidth",
+      `${projectSpriteRef?.current?.getBoundingClientRect()?.width}px`
+    );
+    root?.style.setProperty(
+      "--projectSpriteHeight",
+      `${projectSpriteRef?.current?.getBoundingClientRect().height}px`
+    );
+  }, [projectSpriteRef?.current?.getBoundingClientRect()?.width]);
 
   const [aboutRef, aboutInview] = useInView({
     threshold: 0,
   });
-  console.log(swiper);
   useEffect(() => {
     let timer = setInterval(() => {
       setSlideText((prevSlideText) => {
@@ -310,7 +324,7 @@ export default function Home() {
               </div>
             </SwiperSlide>
             <SwiperSlide className={styles.projectCard}>
-              <div className={styles.projectSpriteSheet}>
+              <div className={styles.projectSpriteSheet} ref={projectSpriteRef}>
                 <div></div>
               </div>
               {/* <Image

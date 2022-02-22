@@ -58,7 +58,7 @@
     background-position-x: 0;
   }
   to {
-    background-position-x: -4400px;
+    background-position-x: calc(var(--projectSpriteWidth) * -10);
   }
 }
 @keyframes moveY {
@@ -66,6 +66,6 @@
     background-position-y: 0;
   }
   to {
-    background-position-y: -3840px;
+    background-position-y: calc(var(--projectSpriteHeight) * -6);
   }
 }
