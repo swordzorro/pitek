@@ -7,12 +7,14 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import Footer from "../components/Footer";
 import styles from "../styles/Home.module.scss";
 import { useWindowScrollPositions } from "../utils/useWindowScrollPositions";
+import { Parallax } from "react-scroll-parallax";
 
 const slideTextArr = ["unique", "modern", "creative"];
 
 export default function Home() {
   const [slideText, setSlideText] = useState(0);
   const [swiper, setSwiper] = useState({});
+  const [overlayPercent, setOverlayPercent] = useState(1);
   const projectSpriteRef = useRef();
 
   // console.log(projectSpriteRef?.current?.getBoundingClientRect());
@@ -44,7 +46,7 @@ export default function Home() {
     }, 3000);
     return () => clearInterval(timer); // cleanup the timer
   }, []);
-
+  console.log(overlayPercent);
   const { scrollY } = useWindowScrollPositions();
   return (
     <div className={styles.container}>
@@ -54,110 +56,134 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       {/* Page */}
-      <div className={styles.bannerContainer}>
-        <video loop muted autoPlay className={styles.bannerVideo}>
-          <source src="/mp4/banner_fullhd.mp4" />
-        </video>
-        <div className={styles.bannerText}>Digital Product Development</div>
+      <Parallax speed={-35}>
         <div
-          className={`${styles.exploreMore} ${scrollY > 0 ? styles.gone : ""}`}
+          className={styles.bannerContainer}
+          style={{ opacity: 1 - overlayPercent }}
         >
-          <p>Explore</p>
-          <div className={styles.line}></div>
-        </div>
-      </div>
-      <section
-        className={`${styles.about} ${styles.contentWrapper}`}
-        ref={aboutRef}
-      >
-        <div className={styles.visual}>
-          <div className={styles.visualLayer2}></div>
-          <div className={styles.visualLayer1}></div>
-          <div className={styles.logoSprite}></div>
-        </div>
-        <div className={styles.aboutContent}>
-          <h2>
-            We create{" "}
-            <div className={`${styles.textSlider}`}>
-              {slideTextArr?.map((item, index) => (
-                <span
-                  key={index}
-                  className={`${styles.text} ${
-                    slideText === index ? styles.show : styles.notShow
-                  } 
-                  `}
-                  style={{
-                    width: 250,
-                    opacity: slideText === index ? 1 : 0,
-                  }}
-                >
-                  {item}
-                </span>
-              ))}
-            </div>
-            digital products & technology experiences.
-          </h2>
-          <p>
-            Starting operations in early 2021, Pitek brings products and
-            services of modern technology, helping customers who’re approaching
-            new technology trends have effective experiences, tailored to their
-            needs.
-          </p>
-          <div className={styles.link}>
-            <a>see more about us</a>
+          <video loop muted autoPlay className={styles.bannerVideo}>
+            <source src="/mp4/banner_fullhd.mp4" />
+          </video>
+          <div className={styles.bannerText}>Digital Product Development</div>
+          <div
+            className={`${styles.exploreMore} ${
+              scrollY > 0 ? styles.gone : ""
+            }`}
+          >
+            <p>Explore</p>
             <div className={styles.line}></div>
           </div>
         </div>
-      </section>
+      </Parallax>
+      <Parallax
+        speed={10}
+        y={[0, 0]}
+        style={{ background: "white" }}
+        onProgressChange={(progress) => setOverlayPercent(progress)}
+      >
+        <section
+          className={`${styles.about} ${styles.contentWrapper}`}
+          ref={aboutRef}
+        >
+          <Parallax speed={50} y={[0, 0]} style={{ background: "white" }}>
+            <div className={styles.visual}>
+              <div className={styles.visualLayer2}></div>
+              <div className={styles.visualLayer1}></div>
+              <div className={styles.logoSprite}></div>
+            </div>
+          </Parallax>
+          <Parallax speed={30} y={[0, 0]} style={{ background: "white" }}>
+            <div className={styles.aboutContent}>
+              <h2>
+                We create{" "}
+                <div className={`${styles.textSlider}`}>
+                  {slideTextArr?.map((item, index) => (
+                    <span
+                      key={index}
+                      className={`${styles.text} ${
+                        slideText === index ? styles.show : styles.notShow
+                      } 
+                  `}
+                      style={{
+                        width: 250,
+                        opacity: slideText === index ? 1 : 0,
+                      }}
+                    >
+                      {item}
+                    </span>
+                  ))}
+                </div>
+                digital products & technology experiences.
+              </h2>
+              <p>
+                Starting operations in early 2021, Pitek brings products and
+                services of modern technology, helping customers who’re
+                approaching new technology trends have effective experiences,
+                tailored to their needs.
+              </p>
+              <div className={styles.link}>
+                <a>see more about us</a>
+                <div className={styles.line}></div>
+              </div>
+            </div>
+          </Parallax>
+        </section>
+      </Parallax>
       {/* TODO: service */}
       <section className={styles.service}>
-        <div className={styles.circlePattern}>
+        <Parallax speed={-100} className={styles.circlePattern}>
           <Image
             src="/home-page/circle-pattern-320x320.svg"
             width={320}
             height={320}
             alt=""
           />
-        </div>
-        <div className={styles.arrowPattern}>
+        </Parallax>
+        <Parallax speed={50} className={styles.arrowPattern}>
           <Image
             src="/home-page/arrow-pattern-160x160.svg"
             width={160}
             height={160}
             alt=""
           />
-        </div>
-        <div className={styles.plusPattern}>
+        </Parallax>
+        <Parallax speed={-20} className={styles.plusPattern}>
           <Image
             src="/home-page/plus-pattern-320x160.svg"
             width={320}
             height={160}
             alt=""
           />
-        </div>
+        </Parallax>
         <div className={styles.contentWrapper}>
           <h1>Our service</h1>
           <div className={styles.cards}>
             <div className={styles.card}>
-              <div className={styles.icon}>
-                <Image
-                  src={"/home-page/glassmorphims-dev.png"}
-                  width={120}
-                  height={120}
-                  alt=""
-                />
-              </div>
-              <h5>
-                Software <br /> development
-              </h5>
-              <p>
-                We architect, build, and deliver digital products entirely
-                in-house.
-              </p>
-              <p>Product Development</p>
-              <p>CMS Integration</p>
-              <p>3rd Party Integration</p>
-              <p>API Design & Implementation</p>
+              <Parallax speed={15}>
+                <div className={styles.icon}>
+                  <Image
+                    src={"/home-page/glassmorphims-dev.png"}
+                    width={120}
+                    height={120}
+                    alt=""
+                  />
+                </div>
+              </Parallax>
+              <Parallax speed={10}>
+                <h5>
+                  Software <br /> development
+                </h5>
+              </Parallax>
+              <Parallax speed={5}>
+                <p>
+                  We architect, build, and deliver digital products entirely
+                  in-house.
+                </p>
+                <p>Product Development</p>
+                <p>CMS Integration</p>
+                <p>3rd Party Integration</p>
+                <p>API Design & Implementation</p>
+              </Parallax>
             </div>
             <div className={styles.card}>
               <div className={styles.icon}>
@@ -204,6 +230,7 @@ export default function Home() {
           </div>
         </div>
       </section>
+
       <section className={`${styles.project}`}>
         <div className={styles.projectBg}>
           <video loop muted autoPlay>
