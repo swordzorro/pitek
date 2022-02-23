@@ -16,6 +16,7 @@ export default function Home() {
   const [swiper, setSwiper] = useState({});
   const [overlayPercent, setOverlayPercent] = useState(1);
   const projectSpriteRef = useRef();
+  const logoSpriteRef = useRef();
 
   // console.log(projectSpriteRef?.current?.getBoundingClientRect());
 
@@ -29,7 +30,15 @@ export default function Home() {
       "--projectSpriteHeight",
       `${projectSpriteRef?.current?.getBoundingClientRect().height}px`
     );
-  }, [projectSpriteRef?.current?.getBoundingClientRect()?.width]);
+    root?.style.setProperty(
+      "--logoSpriteWidth",
+      `${logoSpriteRef?.current?.getBoundingClientRect()?.width}px`
+    );
+    root?.style.setProperty(
+      "--logoSpriteHeight",
+      `${logoSpriteRef?.current?.getBoundingClientRect().height}px`
+    );
+  }, [projectSpriteRef, logoSpriteRef]);
 
   const [aboutRef, aboutInview] = useInView({
     threshold: 0,
@@ -56,81 +65,85 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       {/* Page */}
-      <Parallax speed={-35}>
+
+      <Parallax
+        speed={-35}
+        className={styles.bannerContainer}
+        // style={{ opacity: 1 - overlayPercent }}
+      >
+        <video loop muted autoPlay className={styles.bannerVideo}>
+          <source src="/mp4/banner_fullhd.mp4" />
+        </video>
+        <div className={styles.bannerText}>Digital Product Development</div>
         <div
-          className={styles.bannerContainer}
-          style={{ opacity: 1 - overlayPercent }}
+          className={`${styles.exploreMore} ${scrollY > 0 ? styles.gone : ""}`}
         >
-          <video loop muted autoPlay className={styles.bannerVideo}>
-            <source src="/mp4/banner_fullhd.mp4" />
-          </video>
-          <div className={styles.bannerText}>Digital Product Development</div>
-          <div
-            className={`${styles.exploreMore} ${
-              scrollY > 0 ? styles.gone : ""
-            }`}
-          >
-            <p>Explore</p>
-            <div className={styles.line}></div>
-          </div>
+          <p>Explore</p>
+          <div className={styles.line}></div>
         </div>
       </Parallax>
+      {/* TODO: section about */}
       <Parallax
         speed={10}
-        y={[0, 0]}
-        style={{ background: "white" }}
         onProgressChange={(progress) => setOverlayPercent(progress)}
+        className={`${styles.about} `}
+        style={{ background: "white" }}
+        ref={aboutRef}
       >
-        <section
-          className={`${styles.about} ${styles.contentWrapper}`}
-          ref={aboutRef}
-        >
-          <Parallax speed={50} y={[0, 0]} style={{ background: "white" }}>
-            <div className={styles.visual}>
-              <div className={styles.visualLayer2}></div>
-              <div className={styles.visualLayer1}></div>
-              <div className={styles.logoSprite}></div>
-            </div>
-          </Parallax>
-          <Parallax speed={30} y={[0, 0]} style={{ background: "white" }}>
-            <div className={styles.aboutContent}>
-              <h2>
-                We create{" "}
-                <div className={`${styles.textSlider}`}>
-                  {slideTextArr?.map((item, index) => (
-                    <span
-                      key={index}
-                      className={`${styles.text} ${
-                        slideText === index ? styles.show : styles.notShow
-                      } 
+        {/* <section> */}
+
+        {/* <Parallax
+          speed={50}
+          y={[0, 0]}
+          style={{
+            flex: 1,
+            display: "flex",
+            alignItems: "center",
+          }}
+        > */}
+        <div className={styles.visual} ref={logoSpriteRef}>
+          <div className={styles.visualLayer2}></div>
+          <div className={styles.visualLayer1}></div>
+          <div className={styles.logoSprite}></div>
+        </div>
+        {/* </Parallax>*/}
+        <Parallax speed={30} y={[0, 0]} className={styles.aboutContent}>
+          <h2>
+            We create{" "}
+            <div className={`${styles.textSlider}`}>
+              {slideTextArr?.map((item, index) => (
+                <span
+                  key={index}
+                  className={`${styles.text} ${
+                    slideText === index ? styles.show : styles.notShow
+                  } 
                   `}
-                      style={{
-                        width: 250,
-                        opacity: slideText === index ? 1 : 0,
-                      }}
-                    >
-                      {item}
-                    </span>
-                  ))}
-                </div>
-                digital products & technology experiences.
-              </h2>
-              <p>
-                Starting operations in early 2021, Pitek brings products and
-                services of modern technology, helping customers who’re
-                approaching new technology trends have effective experiences,
-                tailored to their needs.
-              </p>
-              <div className={styles.link}>
-                <a>see more about us</a>
-                <div className={styles.line}></div>
-              </div>
+                  style={{
+                    opacity: slideText === index ? 1 : 0,
+                  }}
+                >
+                  {item}
+                </span>
+              ))}
             </div>
-          </Parallax>
-        </section>
+            <br />
+            digital products & technology experiences.
+          </h2>
+          <p>
+            Starting operations in early 2021, Pitek brings products and
+            services of modern technology, helping customers who’re approaching
+            new technology trends have effective experiences, tailored to their
+            needs.
+          </p>
+          <div className={styles.link}>
+            <a>see more about us</a>
+            <div className={styles.line}></div>
+          </div>
+        </Parallax>
+        {/* </section> */}
       </Parallax>
       {/* TODO: service */}
-      <section className={styles.service}>
+      <Parallax speed={10} className={styles.service}>
         <Parallax speed={-100} className={styles.circlePattern}>
           <Image
             src="/home-page/circle-pattern-320x320.svg"
@@ -156,7 +169,9 @@ export default function Home() {
           />
         </Parallax>
         <div className={styles.contentWrapper}>
-          <h1>Our service</h1>
+          <Parallax speed={10}>
+            <h1>Our service</h1>
+          </Parallax>
           <div className={styles.cards}>
             <div className={styles.card}>
               <Parallax speed={15}>
@@ -179,57 +194,73 @@ export default function Home() {
                   We architect, build, and deliver digital products entirely
                   in-house.
                 </p>
-                <p>Product Development</p>
-                <p>CMS Integration</p>
-                <p>3rd Party Integration</p>
-                <p>API Design & Implementation</p>
+                <div className={styles.cardList}>
+                  <p>Product Development</p>
+                  <p>CMS Integration</p>
+                  <p>3rd Party Integration</p>
+                  <p>API Design & Implementation</p>
+                </div>
               </Parallax>
             </div>
             <div className={styles.card}>
-              <div className={styles.icon}>
-                <Image
-                  src={"/home-page/glassmorphims-iot.png"}
-                  width={120}
-                  height={120}
-                  alt=""
-                />
-              </div>
-              <h5>
-                IoT software <br /> and services
-              </h5>
-              <p>
-                We architect, build, and deliver digital products entirely
-                in-house.
-              </p>
-              <p>Product Development</p>
-              <p>CMS Integration</p>
-              <p>3rd Party Integration</p>
-              <p>API Design & Implementation</p>
+              <Parallax speed={15}>
+                <div className={styles.icon}>
+                  <Image
+                    src={"/home-page/glassmorphims-iot.png"}
+                    width={120}
+                    height={120}
+                    alt=""
+                  />
+                </div>
+              </Parallax>
+              <Parallax speed={10}>
+                <h5>
+                  IoT software <br /> and services
+                </h5>
+              </Parallax>
+              <Parallax speed={5}>
+                <p>
+                  Through the digital transformation, our products are being
+                  interconnected into intelligent systems based in IoT.
+                </p>
+                <p>
+                  With the brand message: <br />
+                  ONE SIMPLE — We resolve the problems with simple solution.
+                </p>
+                {/* <p>Product Development</p>
+                <p>CMS Integration</p>
+                <p>3rd Party Integration</p>
+                <p>API Design & Implementation</p> */}
+              </Parallax>
             </div>
             <div className={styles.card}>
-              <div className={styles.icon}>
-                <Image
-                  src={"/home-page/glassmorphims-solution.png"}
-                  width={120}
-                  height={120}
-                  alt=""
-                />
-              </div>
-              <h5>
-                Business process <br /> solution
-              </h5>
-              <p>
-                We architect, build, and deliver digital products entirely
-                in-house.
-              </p>
-              <p>Product Development</p>
-              <p>CMS Integration</p>
-              <p>3rd Party Integration</p>
-              <p>API Design & Implementation</p>
+              <Parallax speed={15}>
+                <div className={styles.icon}>
+                  <Image
+                    src={"/home-page/glassmorphims-solution.png"}
+                    width={120}
+                    height={120}
+                    alt=""
+                  />
+                </div>
+              </Parallax>
+              <Parallax speed={10}>
+                <h5>
+                  Business process <br /> solution
+                </h5>
+              </Parallax>
+              <Parallax speed={5}>
+                <p>
+                  We believe with our professional technology consulting and
+                  solutions team helping you achieve cost-efficiency and drive
+                  business growth with the right mix of quality standards,
+                  people and technologies.
+                </p>
+              </Parallax>
             </div>
           </div>
         </div>
-      </section>
+      </Parallax>
 
       <section className={`${styles.project}`}>
         <div className={styles.projectBg}>
@@ -237,7 +268,7 @@ export default function Home() {
             <source src="/mp4/background.mp4" />
           </video>
         </div>
-        <div className={styles.mask}></div>
+        {/* <div className={styles.mask}></div> */}
         <div className={styles.projectContainer}>
           <div className={`${styles.projectContent}`}>
             <h1>PROJECTS</h1>

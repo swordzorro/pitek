@@ -19,7 +19,8 @@
     background-position-x: 0;
   }
   to {
-    background-position-x: -6000px;
+    // background-position-x: -6000px;
+    background-position-x: calc(var(--logoSpriteWidth) * -10);
   }
 }
 @keyframes spriteMoveY {
@@ -27,7 +28,8 @@
     background-position-y: 0;
   }
   to {
-    background-position-y: -4800px;
+    // background-position-y: -4800px;
+    background-position-y: calc(var(--logoSpriteHeight) * -12);
   }
 }
 
