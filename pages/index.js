@@ -55,7 +55,6 @@ export default function Home() {
     }, 3000);
     return () => clearInterval(timer); // cleanup the timer
   }, []);
-  console.log(overlayPercent);
   const { scrollY } = useWindowScrollPositions();
   return (
     <div className={styles.container}>
@@ -71,6 +70,7 @@ export default function Home() {
         className={styles.bannerContainer}
         // style={{ opacity: 1 - overlayPercent }}
       >
+        <div className={styles.bannerBlur}></div>
         <video loop muted autoPlay className={styles.bannerVideo}>
           <source src="/mp4/banner_fullhd.mp4" />
         </video>
@@ -84,7 +84,7 @@ export default function Home() {
       </Parallax>
       {/* TODO: section about */}
       <Parallax
-        speed={10}
+        speed={15}
         onProgressChange={(progress) => setOverlayPercent(progress)}
         className={`${styles.about} `}
         style={{ background: "white" }}
@@ -102,12 +102,45 @@ export default function Home() {
           }}
         > */}
         <div className={styles.visual} ref={logoSpriteRef}>
-          <div className={styles.visualLayer2}></div>
-          <div className={styles.visualLayer1}></div>
+          {/* <div className={styles.visualLayer2}></div> */}
+          <div className={styles.visualLayer1}>
+            <Image
+              // className={styles.visualLayer1}
+              src={"/visual_bg1.png"}
+              width={704}
+              height={548}
+              alt=""
+              objectFit="contain"
+              layout="intrinsic"
+            ></Image>
+          </div>
+          <div className={styles.visualLayer2}>
+            <Image
+              // className={styles.visualLayer1}
+              src={"/visual_bg2.png"}
+              width={704}
+              height={548}
+              alt=""
+              objectFit="contain"
+              layout="intrinsic"
+            ></Image>
+          </div>
+          <div className={styles.visualLayer3}>
+            <Image
+              // className={styles.visualLayer1}
+              src={"/visual_one_simple.png"}
+              width={704}
+              height={548}
+              alt=""
+              objectFit="contain"
+              layout="intrinsic"
+            ></Image>
+          </div>
+
           <div className={styles.logoSprite}></div>
         </div>
         {/* </Parallax>*/}
-        <Parallax speed={30} y={[0, 0]} className={styles.aboutContent}>
+        <Parallax speed={20} y={[0, 0]} className={styles.aboutContent}>
           <h2>
             We create{" "}
             <div className={`${styles.textSlider}`}>
@@ -174,22 +207,18 @@ export default function Home() {
           </Parallax>
           <div className={styles.cards}>
             <div className={styles.card}>
-              <Parallax speed={15}>
-                <div className={styles.icon}>
-                  <Image
-                    src={"/home-page/glassmorphims-dev.png"}
-                    width={120}
-                    height={120}
-                    alt=""
-                  />
-                </div>
-              </Parallax>
-              <Parallax speed={10}>
+              <div className={styles.icon}>
+                <Image
+                  src={"/home-page/glassmorphims-dev.png"}
+                  width={120}
+                  height={120}
+                  alt=""
+                />
+              </div>
+              <div className={styles.cardContent}>
                 <h5>
                   Software <br /> development
                 </h5>
-              </Parallax>
-              <Parallax speed={5}>
                 <p>
                   We architect, build, and deliver digital products entirely
                   in-house.
@@ -200,25 +229,21 @@ export default function Home() {
                   <p>3rd Party Integration</p>
                   <p>API Design & Implementation</p>
                 </div>
-              </Parallax>
+              </div>
             </div>
             <div className={styles.card}>
-              <Parallax speed={15}>
-                <div className={styles.icon}>
-                  <Image
-                    src={"/home-page/glassmorphims-iot.png"}
-                    width={120}
-                    height={120}
-                    alt=""
-                  />
-                </div>
-              </Parallax>
-              <Parallax speed={10}>
+              <div className={styles.icon}>
+                <Image
+                  src={"/home-page/glassmorphims-iot.png"}
+                  width={120}
+                  height={120}
+                  alt=""
+                />
+              </div>
+              <div className={styles.cardContent}>
                 <h5>
                   IoT software <br /> and services
                 </h5>
-              </Parallax>
-              <Parallax speed={5}>
                 <p>
                   Through the digital transformation, our products are being
                   interconnected into intelligent systems based in IoT.
@@ -231,32 +256,28 @@ export default function Home() {
                 <p>CMS Integration</p>
                 <p>3rd Party Integration</p>
                 <p>API Design & Implementation</p> */}
-              </Parallax>
+              </div>
             </div>
             <div className={styles.card}>
-              <Parallax speed={15}>
-                <div className={styles.icon}>
-                  <Image
-                    src={"/home-page/glassmorphims-solution.png"}
-                    width={120}
-                    height={120}
-                    alt=""
-                  />
-                </div>
-              </Parallax>
-              <Parallax speed={10}>
+              <div className={styles.icon}>
+                <Image
+                  src={"/home-page/glassmorphims-solution.png"}
+                  width={120}
+                  height={120}
+                  alt=""
+                />
+              </div>
+              <div className={styles.cardContent}>
                 <h5>
                   Business process <br /> solution
                 </h5>
-              </Parallax>
-              <Parallax speed={5}>
                 <p>
                   We believe with our professional technology consulting and
                   solutions team helping you achieve cost-efficiency and drive
                   business growth with the right mix of quality standards,
                   people and technologies.
                 </p>
-              </Parallax>
+              </div>
             </div>
           </div>
         </div>
@@ -268,7 +289,7 @@ export default function Home() {
             <source src="/mp4/background.mp4" />
           </video>
         </div>
-        {/* <div className={styles.mask}></div> */}
+        <div className={styles.mask}></div>
         <div className={styles.projectContainer}>
           <div className={`${styles.projectContent}`}>
             <h1>PROJECTS</h1>
@@ -316,11 +337,27 @@ export default function Home() {
             </div>
           </div>
           <Swiper
-            slidesPerView={3}
             spaceBetween={80}
+            slidesPerView={3}
             speed={1000}
             loop={true}
             // loopFillGroupWithBlank={true}
+            loopedSlides={5}
+            breakpoints={{
+              1025: {
+                centeredSlides: false,
+                slidesPerView: 3,
+              },
+              768: {
+                slidesPerView: 2,
+                spaceBetween: 40,
+              },
+              0: {
+                centeredSlides: true,
+                slidesPerView: 1,
+                spaceBetween: 10,
+              },
+            }}
             watchOverflow={true}
             navigation={{
               nextEl: ".projectCard",
@@ -343,6 +380,7 @@ export default function Home() {
                 <h2>Ecoe</h2>
               </div>
             </SwiperSlide>
+
             <SwiperSlide className={styles.projectCard}>
               <Image
                 src={"/projects/Pinnow.png"}
@@ -356,6 +394,7 @@ export default function Home() {
                 <h2>Pinnow</h2>
               </div>
             </SwiperSlide>
+
             <SwiperSlide className={styles.projectCard}>
               <Image
                 src={"/projects/PiBuilding.png"}
@@ -369,6 +408,7 @@ export default function Home() {
                 <h2>PiBuilding</h2>
               </div>
             </SwiperSlide>
+
             <SwiperSlide className={styles.projectCard}>
               <Image
                 src={"/projects/Ecoin.png"}
@@ -382,17 +422,12 @@ export default function Home() {
                 <h2>Ecoin</h2>
               </div>
             </SwiperSlide>
+
             <SwiperSlide className={styles.projectCard}>
               <div className={styles.projectSpriteSheet} ref={projectSpriteRef}>
-                <div></div>
+                <div className={styles.box}></div>
               </div>
-              {/* <Image
-                src={"/projects/Ecoin.png"}
-                width={440}
-                height={640}
-                objectFit="contain"
-                alt=""
-              /> */}
+
               <div className={styles.info}>
                 <p>New App</p>
                 <h3>
@@ -402,28 +437,6 @@ export default function Home() {
               </div>
             </SwiperSlide>
           </Swiper>
-          {/* <div className={styles.projectCards}>
-              <div className={styles.projectCard}>
-                <p>Mobile App</p>
-                <h2>Ecoe</h2>
-              </div>
-              <div className={styles.projectCard}>
-                <p>Mobile App</p>
-                <h2>Ecoe</h2>
-              </div>
-              <div className={styles.projectCard}>
-                <p>Mobile App</p>
-                <h2>Ecoe</h2>
-              </div>
-              <div className={styles.projectCard}>
-                <p>Mobile App</p>
-                <h2>Ecoe</h2>
-              </div>
-              <div className={styles.projectCard}>
-                <p>Mobile App</p>
-                <h2>Ecoe</h2>
-              </div>
-            </div> */}
         </div>
       </section>
       <Footer />

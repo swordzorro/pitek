@@ -6,7 +6,12 @@ const Footer = () => {
   return (
     <footer className={styles.footerWrapper}>
       <div className={styles.logo}>
-        <Image src={"/icons/pitek_logo.svg"} width={180} height={84} alt="" />
+        <Image
+          src={"/icons/pitek_logo_white.svg"}
+          width={180}
+          height={84}
+          alt=""
+        />
       </div>
       <div className={styles.footerInfo}>
         <div className={styles.address}>
