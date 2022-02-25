@@ -16,8 +16,9 @@ export default function Home() {
   const [swiper, setSwiper] = useState({});
   const [overlayPercent, setOverlayPercent] = useState(1);
   const projectSpriteRef = useRef();
+  const projectSpriteIpadRef = useRef();
+  const projectSpritePhoneRef = useRef();
   const logoSpriteRef = useRef();
-
   // console.log(projectSpriteRef?.current?.getBoundingClientRect());
 
   useEffect(() => {
@@ -31,6 +32,23 @@ export default function Home() {
       `${projectSpriteRef?.current?.getBoundingClientRect().height}px`
     );
     root?.style.setProperty(
+      "--projectSpriteWidthIpad",
+      `${projectSpriteIpadRef?.current?.getBoundingClientRect()?.width}px`
+    );
+    root?.style.setProperty(
+      "--projectSpriteHeightIpad",
+      `${projectSpriteIpadRef?.current?.getBoundingClientRect().height}px`
+    );
+    root?.style.setProperty(
+      "--projectSpriteWidthPhone",
+      `${projectSpritePhoneRef?.current?.getBoundingClientRect()?.width}px`
+    );
+    root?.style.setProperty(
+      "--projectSpriteHeightPhone",
+      `${projectSpritePhoneRef?.current?.getBoundingClientRect().height}px`
+    );
+    // logo
+    root?.style.setProperty(
       "--logoSpriteWidth",
       `${logoSpriteRef?.current?.getBoundingClientRect()?.width}px`
     );
@@ -38,11 +56,13 @@ export default function Home() {
       "--logoSpriteHeight",
       `${logoSpriteRef?.current?.getBoundingClientRect().height}px`
     );
-  }, [projectSpriteRef, logoSpriteRef]);
+  }, []);
 
   const [aboutRef, aboutInview] = useInView({
     threshold: 0,
   });
+
+  console.log(projectSpriteRef?.current?.getBoundingClientRect()?.width);
   useEffect(() => {
     let timer = setInterval(() => {
       setSlideText((prevSlideText) => {
@@ -66,8 +86,10 @@ export default function Home() {
       {/* Page */}
 
       <Parallax
-        speed={-35}
+        // speed={-10}
+        translateY={[-15, 15]}
         className={styles.bannerContainer}
+        startScroll={0}
         // style={{ opacity: 1 - overlayPercent }}
       >
         <div className={styles.bannerBlur}></div>
@@ -84,7 +106,8 @@ export default function Home() {
       </Parallax>
       {/* TODO: section about */}
       <Parallax
-        speed={15}
+        // speed={15}
+        translateY={[0, -15]}
         onProgressChange={(progress) => setOverlayPercent(progress)}
         className={`${styles.about} `}
         style={{ background: "white" }}
@@ -341,31 +364,8 @@ export default function Home() {
             slidesPerView={3}
             speed={1000}
             loop={true}
-            // loopFillGroupWithBlank={true}
-            loopedSlides={5}
-            breakpoints={{
-              1025: {
-                centeredSlides: false,
-                slidesPerView: 3,
-              },
-              768: {
-                slidesPerView: 2,
-                spaceBetween: 40,
-              },
-              0: {
-                centeredSlides: true,
-                slidesPerView: 1,
-                spaceBetween: 10,
-              },
-            }}
-            watchOverflow={true}
-            navigation={{
-              nextEl: ".projectCard",
-            }}
-            modules={[Navigation]}
             className={styles.mySwiper}
             onInit={(ev) => setSwiper(ev)}
-            removeClippedSubviews={false}
           >
             <SwiperSlide className={styles.projectCard}>
               <Image
@@ -425,6 +425,168 @@ export default function Home() {
 
             <SwiperSlide className={styles.projectCard}>
               <div className={styles.projectSpriteSheet} ref={projectSpriteRef}>
+                <div className={styles.box}></div>
+              </div>
+
+              <div className={styles.info}>
+                <p>New App</p>
+                <h3>
+                  Your project
+                  <br /> can be here
+                </h3>
+              </div>
+            </SwiperSlide>
+          </Swiper>
+
+          <Swiper
+            spaceBetween={40}
+            slidesPerView={2}
+            speed={1000}
+            loop={true}
+            className={styles.mySwiperIpad}
+          >
+            <SwiperSlide className={styles.projectCard}>
+              <Image
+                src={"/projects/Ecoe.png"}
+                width={440}
+                height={640}
+                objectFit="contain"
+                alt=""
+              />
+              <div className={styles.info}>
+                <p>Mobile App</p>
+                <h2>Ecoe</h2>
+              </div>
+            </SwiperSlide>
+
+            <SwiperSlide className={styles.projectCard}>
+              <Image
+                src={"/projects/Pinnow.png"}
+                width={440}
+                height={640}
+                objectFit="contain"
+                alt=""
+              />
+              <div className={styles.info}>
+                <p>Mobile App</p>
+                <h2>Pinnow</h2>
+              </div>
+            </SwiperSlide>
+
+            <SwiperSlide className={styles.projectCard}>
+              <Image
+                src={"/projects/PiBuilding.png"}
+                width={440}
+                height={640}
+                objectFit="contain"
+                alt=""
+              />
+              <div className={styles.info}>
+                <p>Desktop App</p>
+                <h2>PiBuilding</h2>
+              </div>
+            </SwiperSlide>
+
+            <SwiperSlide className={styles.projectCard}>
+              <Image
+                src={"/projects/Ecoin.png"}
+                width={440}
+                height={640}
+                objectFit="contain"
+                alt=""
+              />
+              <div className={styles.info}>
+                <p>Platform</p>
+                <h2>Ecoin</h2>
+              </div>
+            </SwiperSlide>
+
+            <SwiperSlide className={styles.projectCard}>
+              <div
+                className={styles.projectSpriteSheet}
+                ref={projectSpriteIpadRef}
+              >
+                <div className={styles.box}></div>
+              </div>
+
+              <div className={styles.info}>
+                <p>New App</p>
+                <h3>
+                  Your project
+                  <br /> can be here
+                </h3>
+              </div>
+            </SwiperSlide>
+          </Swiper>
+
+          <Swiper
+            spaceBetween={20}
+            slidesPerView={1}
+            speed={1000}
+            loop={true}
+            className={styles.mySwiperPhone}
+          >
+            <SwiperSlide className={styles.projectCard}>
+              <Image
+                src={"/projects/Ecoe.png"}
+                width={440}
+                height={640}
+                objectFit="contain"
+                alt=""
+              />
+              <div className={styles.info}>
+                <p>Mobile App</p>
+                <h2>Ecoe</h2>
+              </div>
+            </SwiperSlide>
+
+            <SwiperSlide className={styles.projectCard}>
+              <Image
+                src={"/projects/Pinnow.png"}
+                width={440}
+                height={640}
+                objectFit="contain"
+                alt=""
+              />
+              <div className={styles.info}>
+                <p>Mobile App</p>
+                <h2>Pinnow</h2>
+              </div>
+            </SwiperSlide>
+
+            <SwiperSlide className={styles.projectCard}>
+              <Image
+                src={"/projects/PiBuilding.png"}
+                width={440}
+                height={640}
+                objectFit="contain"
+                alt=""
+              />
+              <div className={styles.info}>
+                <p>Desktop App</p>
+                <h2>PiBuilding</h2>
+              </div>
+            </SwiperSlide>
+
+            <SwiperSlide className={styles.projectCard}>
+              <Image
+                src={"/projects/Ecoin.png"}
+                width={440}
+                height={640}
+                objectFit="contain"
+                alt=""
+              />
+              <div className={styles.info}>
+                <p>Platform</p>
+                <h2>Ecoin</h2>
+              </div>
+            </SwiperSlide>
+
+            <SwiperSlide className={styles.projectCard}>
+              <div
+                className={styles.projectSpriteSheet}
+                ref={projectSpritePhoneRef}
+              >
                 <div className={styles.box}></div>
               </div>
 

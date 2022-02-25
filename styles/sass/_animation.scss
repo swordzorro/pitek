@@ -71,3 +71,40 @@
     background-position-y: calc(var(--projectSpriteHeight) * -6);
   }
 }
+
+@media (max-width: 1025px) {
+  @keyframes moveX {
+    from {
+      background-position-x: 0;
+    }
+    to {
+      background-position-x: calc(var(--projectSpriteWidthIpad) * -10);
+    }
+  }
+  @keyframes moveY {
+    from {
+      background-position-y: 0;
+    }
+    to {
+      background-position-y: calc(var(--projectSpriteHeightIpad) * -6);
+    }
+  }
+}
+@media (max-width: 429px) {
+  @keyframes moveX {
+    from {
+      background-position-x: 0;
+    }
+    to {
+      background-position-x: calc(var(--projectSpriteWidthPhone) * -10);
+    }
+  }
+  @keyframes moveY {
+    from {
+      background-position-y: 0;
+    }
+    to {
+      background-position-y: calc(var(--projectSpriteHeightPhone) * -6);
+    }
+  }
+}

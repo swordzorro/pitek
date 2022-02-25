@@ -20,14 +20,30 @@
   height: 100%;
 }
 
-.swiper-wrapper {
-  transition-timing-function: ease-out;
+@media screen and (min-width: 768px) {
+  .swiper-container {
+    width: 768px;
+  }
 }
 
-.swiper-slide {
-  font-size: 18px;
-  /* Center slide text vertically */
+@media screen and (min-width: 768px) {
+  .swiper-container {
+    width: 768px;
+  }
 }
+
+.swiper-wrapper {
+  > div {
+    @media (max-width: 1025px) {
+      // width: 300px !important;
+    }
+  }
+}
+
+// .swiper-slide {
+//   font-size: 18px;
+//   /* Center slide text vertically */
+// }
 
 // .swiper-slide img {
 //   display: block;
@@ -40,7 +56,12 @@
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.5s linear, visibility 0.5s linear;
-  -webkit-transform: translate3d(0, 0, 0);
+
+  @media (max-width: 1025px) {
+    opacity: 1;
+    visibility: visible;
+  }
+
   // @media (max-width: 1025px) {
   //   opacity: 1;
   //   visibility: visible;
@@ -55,6 +76,7 @@
   opacity: 1;
   visibility: visible;
 }
+
 .swiper-slide-active + .swiper-slide + .swiper-slide {
   opacity: 1;
   visibility: visible;
@@ -63,33 +85,38 @@
 .swiper-slide.swiper-slide-prev {
   opacity: 0;
   transition: opacity 0.5s linear, visibility 0.5s linear;
-  @media (max-width: 769px) {
-    opacity: 1;
-    visibility: visible;
-  }
-  @media (max-width: 625px) {
-    opacity: 0;
-    visibility: hidden;
-  }
-}
-.swiper-slide.swiper-slide-next {
-  opacity: 1;
-  transition: opacity 0.5s linear, visibility 0.5s linear;
-  visibility: visible;
-}
 
-.swiper-slide-active + .swiper-slide + .swiper-slide + .swiper-slide {
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.5s linear, visibility 0.5s linear;
+  // @media (max-width: 625px) {
+  //   opacity: 0;
+  //   visibility: hidden;
+  // }
 }
+// .swiper-slide.swiper-slide-next {
+//   opacity: 1;
+//   transition: opacity 0.5s linear, visibility 0.5s linear;
+//   visibility: visible;
+// }
 
-.swiper-slide-active .content,
-.swiper-slide-duplicate-active {
-  visibility: visible;
-  opacity: 1;
-}
+// .swiper-slide-active + .swiper-slide + .swiper-slide + .swiper-slide {
+//   opacity: 0;
+//   visibility: hidden;
+//   transition: opacity 0.5s linear, visibility 0.5s linear;
+// }
 
+// .swiper-slide-active .content,
+// .swiper-slide-duplicate-active {
+//   visibility: visible;
+//   opacity: 1;
+// }
+
+// @media (max-width: 1280px) {
+//   .swiper-slide.swiper-slide-duplicate {
+//     opacity: 0;
+//     visibility: hidden;
+//   }
+// }
+
+//
 .link-btn-white {
   all: unset;
   text-decoration: none;
