@@ -92,16 +92,22 @@ export default function Home() {
         startScroll={0}
         // style={{ opacity: 1 - overlayPercent }}
       >
-        <div className={styles.bannerBlur}></div>
-        <video loop muted autoPlay className={styles.bannerVideo}>
-          <source src="/mp4/banner_fullhd.mp4" />
-        </video>
-        <div className={styles.bannerText}>Digital Product Development</div>
-        <div
-          className={`${styles.exploreMore} ${scrollY > 0 ? styles.gone : ""}`}
-        >
-          <p>Explore</p>
-          <div className={styles.line}></div>
+        <div className={styles.bannerVideo}>
+          <video loop muted autoPlay>
+            <source src="/mp4/banner_fullhd.mp4" />
+          </video>
+          {/* <div className={styles.bannerBlur}></div>
+          <div
+            className={`${styles.exploreMore} ${
+              scrollY > 0 ? styles.gone : ""
+            }`}
+          >
+            <p>Explore</p>
+            <div className={styles.line}></div>
+          </div> */}
+        </div>
+        <div className={styles.bannerText}>
+          Digital Product <br /> Development
         </div>
       </Parallax>
       {/* TODO: section about */}
@@ -163,7 +169,11 @@ export default function Home() {
           <div className={styles.logoSprite}></div>
         </div>
         {/* </Parallax>*/}
-        <Parallax speed={20} y={[0, 0]} className={styles.aboutContent}>
+        <Parallax
+          translateY={[20, -20]}
+          // startScroll={0}
+          className={styles.aboutContent}
+        >
           <h2>
             We create{" "}
             <div className={`${styles.textSlider}`}>
@@ -199,8 +209,8 @@ export default function Home() {
         {/* </section> */}
       </Parallax>
       {/* TODO: service */}
-      <Parallax speed={10} className={styles.service}>
-        <Parallax speed={-100} className={styles.circlePattern}>
+      <div className={styles.service}>
+        <Parallax translateY={[-20, 20]} className={styles.circlePattern}>
           <Image
             src="/home-page/circle-pattern-320x320.svg"
             width={320}
@@ -208,7 +218,7 @@ export default function Home() {
             alt=""
           />
         </Parallax>
-        <Parallax speed={50} className={styles.arrowPattern}>
+        <Parallax translateY={[20, 0]} className={styles.arrowPattern}>
           <Image
             src="/home-page/arrow-pattern-160x160.svg"
             width={160}
@@ -216,7 +226,7 @@ export default function Home() {
             alt=""
           />
         </Parallax>
-        <Parallax speed={-20} className={styles.plusPattern}>
+        <Parallax translateY={[-20, 20]} className={styles.plusPattern}>
           <Image
             src="/home-page/plus-pattern-320x160.svg"
             width={320}
@@ -225,7 +235,7 @@ export default function Home() {
           />
         </Parallax>
         <div className={styles.contentWrapper}>
-          <Parallax speed={10}>
+          <Parallax translateY={[-20, 0]}>
             <h1>Our service</h1>
           </Parallax>
           <div className={styles.cards}>
@@ -304,7 +314,7 @@ export default function Home() {
             </div>
           </div>
         </div>
-      </Parallax>
+      </div>
 
       <section className={`${styles.project}`}>
         <div className={styles.projectBg}>

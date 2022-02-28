@@ -17,7 +17,7 @@ const Footer = () => {
         <div className={styles.address}>
           <p>PITEK JSC ©2022</p>
           <p>
-            633 - 635 Dien Bien Phu, Ward 25, Binh Thanh Distric, Ho Chi Minh.
+            633 - 635 Dien Bien Phu, Ward 25, Binh Thanh District, Ho Chi Minh.
           </p>
         </div>
         <div className={styles.contact}>

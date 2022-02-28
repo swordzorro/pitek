@@ -47,6 +47,16 @@
     height: 100vh;
     overflow: hidden;
     z-index: -1;
+    @media (max-width: 1025px) {
+      // height: auto;
+      height: 80vh;
+      margin-top: -4%;
+      // height: 100%;
+      @media (max-width: 429px) {
+        height: 80vh;
+        margin-top: -120px;
+      }
+    }
     .bannerBlur {
       position: absolute;
       bottom: 0;
@@ -56,15 +66,22 @@
       z-index: 1;
     }
     .bannerVideo {
-      // width: 100%;
-      // height: 100%;
-      min-width: 100%;
-      min-height: 100%;
-      // margin-top: -4%;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translateX(-50%) translateY(-50%);
+      height: 100%;
+      position: relative;
+      @media (max-width: 429px) {
+      }
+      > video {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translateX(-50%) translateY(-50%);
+        @media (max-width: 1025px) {
+          transform: translateX(-50%) translateY(-50%) scale(0.8);
+          @media (max-width: 429px) {
+            transform: translateX(-50%) translateY(-50%) scale(0.55);
+          }
+        }
+      }
     }
     .bannerText {
       position: absolute;
@@ -78,8 +95,16 @@
       text-transform: uppercase;
       color: #fff;
       color: white;
+      text-align: center;
 
       white-space: nowrap;
+
+      br {
+        display: none;
+        @media (max-width: 1025px) {
+          display: block;
+        }
+      }
     }
     .exploreMore {
       position: absolute;
@@ -182,6 +207,10 @@
     .aboutContent {
       flex: 1;
       max-width: 640px;
+      @media (max-width: 429px) {
+        margin-top: -40px;
+      }
+
       h2 {
         position: relative;
         margin-bottom: 32px;
@@ -226,6 +255,12 @@
     padding-bottom: 10%;
     position: relative;
     background: white;
+    @media (max-width: 1025px) {
+      padding: 18%;
+    }
+    @media (max-width: 429px) {
+      padding: 7%;
+    }
     h1 {
       text-align: center;
       color: $primary-red;
@@ -272,10 +307,15 @@
           gap: 32px;
           padding: 32px;
         }
-
-        .icon {
-          margin-bottom: 32px;
+        @media (max-width: 429px) {
+          flex-direction: column;
+          gap: 32px;
+          padding: 32px;
         }
+
+        // .icon {
+        //   margin-bottom: 32px;
+        // }
         h5 {
           margin-bottom: 16px;
           background: linear-gradient(274.9deg, #002266 46.05%, #ff3355 100%);

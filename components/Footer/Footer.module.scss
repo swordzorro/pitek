@@ -10,10 +10,31 @@
   align-items: center;
   justify-content: space-between;
   z-index: 4;
+  @media (max-width: 1025px) {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 38px;
+    @media (max-width: 429px) {
+      padding: 40px;
+    }
+  }
+
+  .logo {
+    @media (max-width: 429px) {
+      max-width: 90px;
+    }
+  }
   .footerInfo {
     display: flex;
     gap: 100px;
-
+    flex-wrap: wrap;
+    @media (max-width: 1025px) {
+      gap: 60px;
+      @media (max-width: 629px) {
+        flex-direction: column;
+        gap: 16px;
+      }
+    }
     > * {
       display: flex;
       flex-direction: column;
@@ -33,12 +54,16 @@
     }
     .address {
       max-width: 270px;
+      min-width: 230px;
     }
     .contact {
       max-width: 145px;
+      min-width: 145px;
     }
     .sendMessage {
       max-width: 202px;
+      flex: 1;
+      white-space: nowrap;
     }
   }
 }
