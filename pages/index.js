@@ -62,7 +62,8 @@ export default function Home() {
     threshold: 0,
   });
 
-  console.log(projectSpriteRef?.current?.getBoundingClientRect()?.width);
+  const bannerVideoRef = useRef();
+
   useEffect(() => {
     let timer = setInterval(() => {
       setSlideText((prevSlideText) => {
@@ -92,11 +93,16 @@ export default function Home() {
         startScroll={0}
         // style={{ opacity: 1 - overlayPercent }}
       >
-        <div className={styles.bannerVideo}>
-          <video loop muted autoPlay>
+        <div
+          className={styles.bannerVideo}
+          style={{
+            maxHeight: bannerVideoRef?.current?.getBoundingClientRect()?.height,
+          }}
+        >
+          <video loop muted autoPlay ref={bannerVideoRef}>
             <source src="/mp4/banner_fullhd.mp4" />
           </video>
-          {/* <div className={styles.bannerBlur}></div>
+          <div className={styles.bannerBlur}></div>
           <div
             className={`${styles.exploreMore} ${
               scrollY > 0 ? styles.gone : ""
@@ -104,7 +110,7 @@ export default function Home() {
           >
             <p>Explore</p>
             <div className={styles.line}></div>
-          </div> */}
+          </div>
         </div>
         <div className={styles.bannerText}>
           Digital Product <br /> Development

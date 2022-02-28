@@ -53,8 +53,7 @@
       margin-top: -4%;
       // height: 100%;
       @media (max-width: 429px) {
-        height: 80vh;
-        margin-top: -120px;
+        height: 75vh;
       }
     }
     .bannerBlur {
@@ -68,17 +67,18 @@
     .bannerVideo {
       height: 100%;
       position: relative;
-      @media (max-width: 429px) {
-      }
+
       > video {
         position: absolute;
         top: 50%;
         left: 50%;
+        min-width: 100%;
+        min-height: 100%;
         transform: translateX(-50%) translateY(-50%);
         @media (max-width: 1025px) {
           transform: translateX(-50%) translateY(-50%) scale(0.8);
           @media (max-width: 429px) {
-            transform: translateX(-50%) translateY(-50%) scale(0.55);
+            transform: translateX(-50%) translateY(-50%) scale(0.65);
           }
         }
       }
