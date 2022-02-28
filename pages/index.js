@@ -8,6 +8,7 @@ import Footer from "../components/Footer";
 import styles from "../styles/Home.module.scss";
 import { useWindowScrollPositions } from "../utils/useWindowScrollPositions";
 import { Parallax } from "react-scroll-parallax";
+import Navbar from "../components/Navbar";
 
 const slideTextArr = ["unique", "modern", "creative"];
 
@@ -58,12 +59,10 @@ export default function Home() {
     );
   }, []);
 
-  const [aboutRef, aboutInview] = useInView({
-    threshold: 0,
+  const [bannerRef, bannerInview] = useInView({
+    threshold: 0.2,
   });
-
   const bannerVideoRef = useRef();
-
   useEffect(() => {
     let timer = setInterval(() => {
       setSlideText((prevSlideText) => {
@@ -85,15 +84,17 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       {/* Page */}
-
+      <Navbar navWhite={bannerInview} />
       <Parallax
         // speed={-10}
         translateY={[-15, 15]}
         className={styles.bannerContainer}
         startScroll={0}
+
         // style={{ opacity: 1 - overlayPercent }}
       >
         <div
+          ref={bannerRef}
           className={styles.bannerVideo}
           style={{
             maxHeight: bannerVideoRef?.current?.getBoundingClientRect()?.height,
@@ -118,24 +119,11 @@ export default function Home() {
       </Parallax>
       {/* TODO: section about */}
       <Parallax
-        // speed={15}
         translateY={[0, -15]}
         onProgressChange={(progress) => setOverlayPercent(progress)}
         className={`${styles.about} `}
         style={{ background: "white" }}
-        ref={aboutRef}
       >
-        {/* <section> */}
-
-        {/* <Parallax
-          speed={50}
-          y={[0, 0]}
-          style={{
-            flex: 1,
-            display: "flex",
-            alignItems: "center",
-          }}
-        > */}
         <div className={styles.visual} ref={logoSpriteRef}>
           {/* <div className={styles.visualLayer2}></div> */}
           <div className={styles.visualLayer1}>

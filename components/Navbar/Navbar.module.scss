@@ -1,0 +1,54 @@
+@import "../../styles/sass/variables";
+
+.navbar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  padding: 24px 40px;
+
+  display: flex;
+  justify-content: space-between;
+
+  svg {
+    path,
+    rect {
+      transition: 0.5s all ease;
+    }
+  }
+
+  .logo {
+    transition: 0.5s all ease;
+  }
+  .burger {
+    cursor: pointer;
+  }
+}
+.navMenu {
+  z-index: 200;
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+
+  opacity: 0.5;
+
+  display: flex;
+
+  .menuRed {
+    flex-basis: 60%;
+    background: $primary-red;
+  }
+
+  .menuBlue {
+    flex-basis: 40%;
+    background: $primary-blue;
+
+    position: relative;
+
+    .close {
+      position: absolute;
+      top: 25px;
+      right: 40px;
+    }
+  }
+}
