@@ -26,24 +26,86 @@
 }
 .navMenu {
   z-index: 200;
-  position: absolute;
+  position: fixed;
   width: 100vw;
   height: 100vh;
-
-  opacity: 0.5;
-
   display: flex;
+  visibility: hidden;
+
+  &.navShow {
+    visibility: visible;
+  }
 
   .menuRed {
     flex-basis: 60%;
     background: $primary-red;
-  }
+    transform: translateX(-100%);
+    transition: 0.8s ease-out;
 
+    padding: 80px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 42px;
+    color: white;
+    position: relative;
+    .arrowPatterns {
+      position: absolute;
+      top: -90px;
+      right: 0;
+    }
+
+    &.navShow {
+      transition: 0.8s ease-in;
+      transform: translateX(0);
+    }
+    .desc {
+      max-width: 500px;
+      font-weight: 300;
+    }
+    .navFooter {
+      display: flex;
+      flex: 1;
+      align-items: flex-end;
+      justify-content: space-between;
+
+      .address,
+      .contact {
+        p {
+          font-weight: 300;
+          &:nth-child(1) {
+            font-weight: 700;
+          }
+        }
+      }
+    }
+  }
   .menuBlue {
     flex-basis: 40%;
     background: $primary-blue;
-
     position: relative;
+    transition: 0.8s ease-out;
+    transform: translateX(100%);
+    color: white;
+
+    display: flex;
+    flex-direction: column;
+    gap: 80px;
+    justify-content: center;
+    padding-left: 240px;
+
+    .circlePatterns {
+      position: absolute;
+      bottom: -140px;
+      right: -160px;
+    }
+    .close {
+      cursor: pointer;
+    }
+    &.navShow {
+      transition: 0.8s ease-in;
+      transform: translateX(0);
+    }
 
     .close {
       position: absolute;
