@@ -126,6 +126,9 @@
   color: $primary-red;
   cursor: pointer;
   font-weight: 700;
+  line-height: 120%;
+
+  letter-spacing: 0.04em;
   display: inline-block;
 }
 .link-btn-red {
@@ -137,5 +140,41 @@
   color: white;
   cursor: pointer;
   font-weight: 700;
+  line-height: 120%;
+
+  letter-spacing: 0.04em;
   display: inline-block;
+}
+.link-btn-gray {
+  all: unset;
+  text-decoration: none;
+  padding: 12px 24px;
+  text-transform: uppercase;
+  background-color: white;
+  color: #808080;
+  cursor: pointer;
+  font-weight: 700;
+  line-height: 120%;
+
+  letter-spacing: 0.04em;
+  display: inline-block;
+}
+
+input[type="text"] {
+  border: none;
+  font-weight: 300;
+  font-size: 18px;
+  line-height: 160%;
+
+  letter-spacing: 0.02em;
+
+  color: $primary-blue;
+
+  border-bottom: 1px solid $primary-blue;
+  outline: none;
+  padding: 0;
+
+  &::placeholder {
+    color: #cccccccc;
+  }
 }

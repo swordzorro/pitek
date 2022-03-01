@@ -32,7 +32,7 @@
   display: flex;
   visibility: hidden;
 
-  &.navShow {
+  &.showMenu {
     visibility: visible;
   }
 
@@ -55,7 +55,7 @@
       right: 0;
     }
 
-    &.navShow {
+    &.showMenu {
       transition: 0.8s ease-in;
       transform: translateX(0);
     }
@@ -79,6 +79,121 @@
         }
       }
     }
+
+    .contactForm {
+      background: white;
+      position: absolute;
+
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      transform: translateX(-100%);
+      transition: 0.8s ease-out;
+
+      padding: 80px;
+
+      display: flex;
+      flex-direction: column;
+
+      color: $primary-blue;
+      h4 {
+        margin-top: 48px;
+      }
+
+      &.showForm {
+        transform: translateX(0);
+        transition: 0.8s ease-in;
+      }
+
+      form {
+        max-width: 680px;
+      }
+      .radioGroup {
+        display: flex;
+        gap: 80px;
+        margin-top: 64px;
+
+        .checkmark {
+          position: absolute;
+          top: 0;
+          left: 0;
+          height: 18px;
+          width: 18px;
+          border: 2px solid #cccccc;
+          border-radius: 50%;
+        }
+        .customRadio {
+          display: flex;
+          position: relative;
+          padding-left: 35px;
+          margin-bottom: 12px;
+          cursor: pointer;
+          -webkit-user-select: none;
+          -moz-user-select: none;
+          -ms-user-select: none;
+          user-select: none;
+        }
+        input[type="radio"] {
+          position: absolute;
+          opacity: 0;
+          cursor: pointer;
+        }
+        .customRadio input[type="radio"]:checked ~ .checkmark {
+          border: 2px solid $primary-blue;
+        }
+        .checkmark::after {
+          content: "";
+          position: absolute;
+          display: none;
+        }
+        .customRadio input[type="radio"]:checked ~ .checkmark::after {
+          display: block;
+        }
+        .customRadio .checkmark::after {
+          top: 3px;
+          left: 3px;
+          width: 8px;
+          height: 8px;
+          border-radius: 50%;
+          background: $primary-blue;
+        }
+      }
+      .inputGroup {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 40px;
+        margin-top: 32px;
+
+        .inputWrapper {
+          flex-basis: calc(50% - 40px);
+          position: relative;
+          &:last-child {
+            flex-basis: calc(100% - 40px);
+          }
+          > input {
+            width: 100%;
+          }
+          .errorMessage {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            transform: translateY(100%);
+
+            font-style: normal;
+            font-weight: 500;
+            font-size: 10px;
+            line-height: 160%;
+            color: $primary-red;
+          }
+        }
+      }
+      .btnGroup {
+        display: flex;
+        gap: 32px;
+        margin-top: 64px;
+      }
+    }
   }
   .menuBlue {
     flex-basis: 40%;
@@ -92,7 +207,7 @@
     flex-direction: column;
     gap: 80px;
     justify-content: center;
-    padding-left: 240px;
+    padding-left: 7%;
 
     .circlePatterns {
       position: absolute;
@@ -102,7 +217,7 @@
     .close {
       cursor: pointer;
     }
-    &.navShow {
+    &.showMenu {
       transition: 0.8s ease-in;
       transform: translateX(0);
     }

@@ -76,6 +76,10 @@ export default function Home() {
     return () => clearInterval(timer); // cleanup the timer
   }, []);
   const { scrollY } = useWindowScrollPositions();
+
+  const [showMenu, setShowMenu] = useState(false);
+  const [showForm, setShowForm] = useState(false);
+
   return (
     <div className={styles.container}>
       <Head>
@@ -84,7 +88,13 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       {/* Page */}
-      <Navbar navWhite={bannerInview} />
+      <Navbar
+        navWhite={bannerInview}
+        showForm={showForm}
+        setShowForm={setShowForm}
+        showMenu={showMenu}
+        setShowMenu={setShowMenu}
+      />
       <Parallax
         // speed={-10}
         translateY={[-15, 15]}
@@ -605,7 +615,7 @@ export default function Home() {
           </Swiper>
         </div>
       </section>
-      <Footer />
+      <Footer setShowForm={setShowForm} setShowMenu={setShowMenu} />
     </div>
   );
 }
