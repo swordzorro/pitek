@@ -1,0 +1,69 @@
+@import "../../styles/sass/variables";
+
+.footerWrapper {
+  background: $primary-red;
+  color: white;
+  opacity: 1;
+  padding: 2.5% 3%;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 4;
+  @media (max-width: 1025px) {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 38px;
+    @media (max-width: 429px) {
+      padding: 40px;
+    }
+  }
+
+  .logo {
+    @media (max-width: 429px) {
+      max-width: 90px;
+    }
+  }
+  .footerInfo {
+    display: flex;
+    gap: 100px;
+    flex-wrap: wrap;
+    @media (max-width: 1025px) {
+      gap: 60px;
+      @media (max-width: 629px) {
+        flex-direction: column;
+        gap: 16px;
+      }
+    }
+    > * {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+
+      > p {
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 160%;
+        letter-spacing: 0.02em;
+
+        &:first-child {
+          font-weight: 700;
+          font-size: 18px;
+        }
+      }
+    }
+    .address {
+      max-width: 270px;
+      min-width: 230px;
+    }
+    .contact {
+      max-width: 145px;
+      min-width: 145px;
+    }
+    .sendMessage {
+      max-width: 202px;
+      flex: 1;
+      white-space: nowrap;
+    }
+  }
+}
