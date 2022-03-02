@@ -29,7 +29,7 @@ const Footer = ({ setShowForm, setShowMenu }) => {
           <button
             className="link-btn-white"
             onClick={() => {
-              setShowMenu(true);
+              // setShowMenu(true);
               setShowForm(true);
             }}
           >
