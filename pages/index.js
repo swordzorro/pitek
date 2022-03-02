@@ -16,11 +16,28 @@ export default function Home() {
   const [slideText, setSlideText] = useState(0);
   const [swiper, setSwiper] = useState({});
   const [overlayPercent, setOverlayPercent] = useState(1);
+
+  const [showMenu, setShowMenu] = useState(false);
+  const [showForm, setShowForm] = useState(false);
+
   const projectSpriteRef = useRef();
   const projectSpriteIpadRef = useRef();
   const projectSpritePhoneRef = useRef();
   const logoSpriteRef = useRef();
-  // console.log(projectSpriteRef?.current?.getBoundingClientRect());
+  const bannerVideoRef = useRef();
+
+  const [bannerRef, bannerInview] = useInView({
+    threshold: 0.2,
+  });
+  const [projectSectionRef, projectSectionInview] = useInView({
+    threshold: 1,
+    rootMargin: "350px",
+  });
+  const [aboutSectionRef, aboutSectionInview] = useInView({
+    threshold: [0.6, 0.1],
+  });
+  console.log(aboutSectionInview);
+  const { scrollY } = useWindowScrollPositions();
 
   useEffect(() => {
     const root = document?.documentElement;
@@ -59,10 +76,6 @@ export default function Home() {
     );
   }, []);
 
-  const [bannerRef, bannerInview] = useInView({
-    threshold: 0.2,
-  });
-  const bannerVideoRef = useRef();
   useEffect(() => {
     let timer = setInterval(() => {
       setSlideText((prevSlideText) => {
@@ -75,10 +88,6 @@ export default function Home() {
     }, 3000);
     return () => clearInterval(timer); // cleanup the timer
   }, []);
-  const { scrollY } = useWindowScrollPositions();
-
-  const [showMenu, setShowMenu] = useState(false);
-  const [showForm, setShowForm] = useState(false);
 
   return (
     <div className={styles.container}>
@@ -89,7 +98,7 @@ export default function Home() {
       </Head>
       {/* Page */}
       <Navbar
-        navWhite={bannerInview}
+        navWhite={!aboutSectionInview}
         showForm={showForm}
         setShowForm={setShowForm}
         showMenu={showMenu}
@@ -128,199 +137,201 @@ export default function Home() {
         </div>
       </Parallax>
       {/* TODO: section about */}
-      <Parallax
-        translateY={[0, -15]}
-        onProgressChange={(progress) => setOverlayPercent(progress)}
-        className={`${styles.about} `}
-        style={{ background: "white" }}
-      >
-        <div className={styles.visual} ref={logoSpriteRef}>
-          {/* <div className={styles.visualLayer2}></div> */}
-          <div className={styles.visualLayer1}>
-            <Image
-              // className={styles.visualLayer1}
-              src={"/visual_bg1.png"}
-              width={704}
-              height={548}
-              alt=""
-              objectFit="contain"
-              layout="intrinsic"
-            ></Image>
-          </div>
-          <div className={styles.visualLayer2}>
-            <Image
-              // className={styles.visualLayer1}
-              src={"/visual_bg2.png"}
-              width={704}
-              height={548}
-              alt=""
-              objectFit="contain"
-              layout="intrinsic"
-            ></Image>
-          </div>
-          <div className={styles.visualLayer3}>
-            <Image
-              // className={styles.visualLayer1}
-              src={"/visual_one_simple.png"}
-              width={704}
-              height={548}
-              alt=""
-              objectFit="contain"
-              layout="intrinsic"
-            ></Image>
-          </div>
-
-          <div className={styles.logoSprite}></div>
-        </div>
-        {/* </Parallax>*/}
+      <div ref={aboutSectionRef}>
         <Parallax
-          translateY={[20, -20]}
-          // startScroll={0}
-          className={styles.aboutContent}
+          translateY={[0, -15]}
+          onProgressChange={(progress) => setOverlayPercent(progress)}
+          className={`${styles.about} `}
+          style={{ background: "white" }}
         >
-          <h2>
-            We create{" "}
-            <div className={`${styles.textSlider}`}>
-              {slideTextArr?.map((item, index) => (
-                <span
-                  key={index}
-                  className={`${styles.text} ${
-                    slideText === index ? styles.show : styles.notShow
-                  } 
-                  `}
-                  style={{
-                    opacity: slideText === index ? 1 : 0,
-                  }}
-                >
-                  {item}
-                </span>
-              ))}
+          <div className={styles.visual} ref={logoSpriteRef}>
+            {/* <div className={styles.visualLayer2}></div> */}
+            <div className={styles.visualLayer1}>
+              <Image
+                // className={styles.visualLayer1}
+                src={"/visual_bg1.png"}
+                width={704}
+                height={548}
+                alt=""
+                objectFit="contain"
+                layout="intrinsic"
+              ></Image>
             </div>
-            <br />
-            digital products & technology experiences.
-          </h2>
-          <p>
-            Starting operations in early 2021, Pitek brings products and
-            services of modern technology, helping customers who’re approaching
-            new technology trends have effective experiences, tailored to their
-            needs.
-          </p>
-          <div className={styles.link}>
-            <a>see more about us</a>
-            <div className={styles.line}></div>
+            <div className={styles.visualLayer2}>
+              <Image
+                // className={styles.visualLayer1}
+                src={"/visual_bg2.png"}
+                width={704}
+                height={548}
+                alt=""
+                objectFit="contain"
+                layout="intrinsic"
+              ></Image>
+            </div>
+            <div className={styles.visualLayer3}>
+              <Image
+                // className={styles.visualLayer1}
+                src={"/visual_one_simple.png"}
+                width={704}
+                height={548}
+                alt=""
+                objectFit="contain"
+                layout="intrinsic"
+              ></Image>
+            </div>
+
+            <div className={styles.logoSprite}></div>
           </div>
-        </Parallax>
-        {/* </section> */}
-      </Parallax>
-      {/* TODO: service */}
-      <div className={styles.service}>
-        <Parallax translateY={[-20, 20]} className={styles.circlePattern}>
-          <Image
-            src="/home-page/circle-pattern-320x320.svg"
-            width={320}
-            height={320}
-            alt=""
-          />
-        </Parallax>
-        <Parallax translateY={[20, 0]} className={styles.arrowPattern}>
-          <Image
-            src="/home-page/arrow-pattern-160x160.svg"
-            width={160}
-            height={160}
-            alt=""
-          />
-        </Parallax>
-        <Parallax translateY={[-20, 20]} className={styles.plusPattern}>
-          <Image
-            src="/home-page/plus-pattern-320x160.svg"
-            width={320}
-            height={160}
-            alt=""
-          />
-        </Parallax>
-        <div className={styles.contentWrapper}>
-          <Parallax translateY={[-20, 0]}>
-            <h1>Our service</h1>
-          </Parallax>
-          <div className={styles.cards}>
-            <div className={styles.card}>
-              <div className={styles.icon}>
-                <Image
-                  src={"/home-page/glassmorphims-dev.png"}
-                  width={120}
-                  height={120}
-                  alt=""
-                />
+          {/* </Parallax>*/}
+          <Parallax
+            translateY={[20, -20]}
+            // startScroll={0}
+            className={styles.aboutContent}
+          >
+            <h2>
+              We create{" "}
+              <div className={`${styles.textSlider}`}>
+                {slideTextArr?.map((item, index) => (
+                  <span
+                    key={index}
+                    className={`${styles.text} ${
+                      slideText === index ? styles.show : styles.notShow
+                    } 
+                  `}
+                    style={{
+                      opacity: slideText === index ? 1 : 0,
+                    }}
+                  >
+                    {item}
+                  </span>
+                ))}
               </div>
-              <div className={styles.cardContent}>
-                <h5>
-                  Software <br /> development
-                </h5>
-                <p>
-                  We architect, build, and deliver digital products entirely
-                  in-house.
-                </p>
-                <div className={styles.cardList}>
-                  <p>Product Development</p>
-                  <p>CMS Integration</p>
-                  <p>3rd Party Integration</p>
-                  <p>API Design & Implementation</p>
+              <br />
+              digital products & technology experiences.
+            </h2>
+            <p>
+              Starting operations in early 2021, Pitek brings products and
+              services of modern technology, helping customers who’re
+              approaching new technology trends have effective experiences,
+              tailored to their needs.
+            </p>
+            <div className={styles.link}>
+              <a>see more about us</a>
+              <div className={styles.line}></div>
+            </div>
+          </Parallax>
+          {/* </section> */}
+        </Parallax>
+        {/* TODO: service */}
+        <div className={styles.service}>
+          <Parallax translateY={[-20, 20]} className={styles.circlePattern}>
+            <Image
+              src="/home-page/circle-pattern-320x320.svg"
+              width={320}
+              height={320}
+              alt=""
+            />
+          </Parallax>
+          <Parallax translateY={[20, 0]} className={styles.arrowPattern}>
+            <Image
+              src="/home-page/arrow-pattern-160x160.svg"
+              width={160}
+              height={160}
+              alt=""
+            />
+          </Parallax>
+          <Parallax translateY={[-20, 20]} className={styles.plusPattern}>
+            <Image
+              src="/home-page/plus-pattern-320x160.svg"
+              width={320}
+              height={160}
+              alt=""
+            />
+          </Parallax>
+          <div className={styles.contentWrapper}>
+            <Parallax translateY={[-20, 0]}>
+              <h1>Our service</h1>
+            </Parallax>
+            <div className={styles.cards}>
+              <div className={styles.card}>
+                <div className={styles.icon}>
+                  <Image
+                    src={"/home-page/glassmorphims-dev.png"}
+                    width={120}
+                    height={120}
+                    alt=""
+                  />
+                </div>
+                <div className={styles.cardContent}>
+                  <h5>
+                    Software <br /> development
+                  </h5>
+                  <p>
+                    We architect, build, and deliver digital products entirely
+                    in-house.
+                  </p>
+                  <div className={styles.cardList}>
+                    <p>Product Development</p>
+                    <p>CMS Integration</p>
+                    <p>3rd Party Integration</p>
+                    <p>API Design & Implementation</p>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div className={styles.card}>
-              <div className={styles.icon}>
-                <Image
-                  src={"/home-page/glassmorphims-iot.png"}
-                  width={120}
-                  height={120}
-                  alt=""
-                />
-              </div>
-              <div className={styles.cardContent}>
-                <h5>
-                  IoT software <br /> and services
-                </h5>
-                <p>
-                  Through the digital transformation, our products are being
-                  interconnected into intelligent systems based in IoT.
-                </p>
-                <p>
-                  With the brand message: <br />
-                  ONE SIMPLE — We resolve the problems with simple solution.
-                </p>
-                {/* <p>Product Development</p>
+              <div className={styles.card}>
+                <div className={styles.icon}>
+                  <Image
+                    src={"/home-page/glassmorphims-iot.png"}
+                    width={120}
+                    height={120}
+                    alt=""
+                  />
+                </div>
+                <div className={styles.cardContent}>
+                  <h5>
+                    IoT software <br /> and services
+                  </h5>
+                  <p>
+                    Through the digital transformation, our products are being
+                    interconnected into intelligent systems based in IoT.
+                  </p>
+                  <p>
+                    With the brand message: <br />
+                    ONE SIMPLE — We resolve the problems with simple solution.
+                  </p>
+                  {/* <p>Product Development</p>
                 <p>CMS Integration</p>
                 <p>3rd Party Integration</p>
                 <p>API Design & Implementation</p> */}
+                </div>
               </div>
-            </div>
-            <div className={styles.card}>
-              <div className={styles.icon}>
-                <Image
-                  src={"/home-page/glassmorphims-solution.png"}
-                  width={120}
-                  height={120}
-                  alt=""
-                />
-              </div>
-              <div className={styles.cardContent}>
-                <h5>
-                  Business process <br /> solution
-                </h5>
-                <p>
-                  We believe with our professional technology consulting and
-                  solutions team helping you achieve cost-efficiency and drive
-                  business growth with the right mix of quality standards,
-                  people and technologies.
-                </p>
+              <div className={styles.card}>
+                <div className={styles.icon}>
+                  <Image
+                    src={"/home-page/glassmorphims-solution.png"}
+                    width={120}
+                    height={120}
+                    alt=""
+                  />
+                </div>
+                <div className={styles.cardContent}>
+                  <h5>
+                    Business process <br /> solution
+                  </h5>
+                  <p>
+                    We believe with our professional technology consulting and
+                    solutions team helping you achieve cost-efficiency and drive
+                    business growth with the right mix of quality standards,
+                    people and technologies.
+                  </p>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      <section className={`${styles.project}`}>
+      <section className={`${styles.project}`} ref={projectSectionRef}>
         <div className={styles.projectBg}>
           <video loop muted autoPlay>
             <source src="/mp4/background.mp4" />

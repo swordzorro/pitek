@@ -156,6 +156,15 @@ const Navbar = ({
             <h2>SERVICE</h2>
             <h2>PROJECTS</h2>
             <h2>CONTACT</h2>
+            <div className={styles.sendMessage}>
+              <p>SAY HELLO</p>
+              <button
+                className="link-btn-white"
+                onClick={() => setShowForm(true)}
+              >
+                SEND A MESSAGE
+              </button>
+            </div>
           </div>
 
           {/* TODO: Contact Form */}

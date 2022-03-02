@@ -10,6 +10,10 @@
   display: flex;
   justify-content: space-between;
 
+  @media (max-width: 1025px) {
+    padding: 16px 20px;
+  }
+
   svg {
     path,
     rect {
@@ -19,9 +23,19 @@
 
   .logo {
     transition: 0.5s all ease;
+    @media (max-width: 1025px) {
+      svg {
+        max-width: 60px;
+      }
+    }
   }
   .burger {
     cursor: pointer;
+    @media (max-width: 1025px) {
+      svg {
+        max-width: 20px;
+      }
+    }
   }
 }
 .navMenu {
@@ -62,7 +76,7 @@
     }
 
     @media (max-width: 430px) {
-      height: 940px;
+      //   height: 940px;
       overflow-y: scroll;
     }
   }
@@ -289,7 +303,12 @@
       flex: 1;
       flex-basis: 60%;
     }
-
+    .sendMessage {
+      display: none;
+      @media (max-width: 430px) {
+        display: block;
+      }
+    }
     .circlePatterns {
       position: absolute;
       bottom: -140px;
