@@ -1,6 +1,5 @@
 import Image from "next/image";
-import React, { useEffect } from "react";
-import { useState } from "react/cjs/react.development";
+import React, { useEffect, useState } from "react";
 import Burger from "./Burger";
 import styles from "./Navbar.module.scss";
 import PitekLogo from "./PitekLogo";
