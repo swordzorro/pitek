@@ -9,6 +9,7 @@ import styles from "../styles/Home.module.scss";
 import { useWindowScrollPositions } from "../utils/useWindowScrollPositions";
 import { Parallax } from "react-scroll-parallax";
 import Navbar from "../components/Navbar";
+import { useRouter } from "next/router";
 
 const slideTextArr = ["unique", "modern", "creative"];
 
@@ -25,6 +26,8 @@ export default function Home() {
   const projectSpritePhoneRef = useRef();
   const logoSpriteRef = useRef();
   const bannerVideoRef = useRef();
+
+  const router = useRouter();
 
   const [bannerRef, bannerInview] = useInView({
     threshold: 0.2,
@@ -392,7 +395,10 @@ export default function Home() {
             className={styles.mySwiper}
             onInit={(ev) => setSwiper(ev)}
           >
-            <SwiperSlide className={styles.projectCard}>
+            <SwiperSlide
+              className={styles.projectCard}
+              onClick={() => router.push("/project/ecoe")}
+            >
               <Image
                 src={"/projects/Ecoe.png"}
                 width={440}
@@ -470,7 +476,10 @@ export default function Home() {
             loop={true}
             className={styles.mySwiperIpad}
           >
-            <SwiperSlide className={styles.projectCard}>
+            <SwiperSlide
+              className={styles.projectCard}
+              onClick={() => router.push("/project/ecoe")}
+            >
               <Image
                 src={"/projects/Ecoe.png"}
                 width={440}
@@ -551,7 +560,10 @@ export default function Home() {
             loop={true}
             className={styles.mySwiperPhone}
           >
-            <SwiperSlide className={styles.projectCard}>
+            <SwiperSlide
+              className={styles.projectCard}
+              onClick={() => router.push("/project/ecoe")}
+            >
               <Image
                 src={"/projects/Ecoe.png"}
                 width={440}

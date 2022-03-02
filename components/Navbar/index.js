@@ -1,9 +1,11 @@
 import Image from "next/image";
+import Link from "next/link";
 import React, { useEffect } from "react";
 import { useState } from "react/cjs/react.development";
 import Burger from "./Burger";
 import styles from "./Navbar.module.scss";
 import PitekLogo from "./PitekLogo";
+import { useRouter } from "next/router";
 
 const Navbar = ({
   navWhite,
@@ -22,6 +24,8 @@ const Navbar = ({
   });
 
   const [error, setError] = useState({});
+
+  const router = useRouter();
 
   const validate = (value) => {
     let emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
@@ -60,7 +64,7 @@ const Navbar = ({
   return (
     <>
       <div className={styles.navbar}>
-        <div className={styles.logo}>
+        <div className={styles.logo} onClick={() => router.push("/")}>
           <PitekLogo
             leftColor={navWhite ? "#FFF" : "#002266"}
             rightColor={navWhite ? "#FFF" : "#FF3355"}
