@@ -1,7 +1,5 @@
 import Image from "next/image";
-import Link from "next/link";
-import React, { useEffect } from "react";
-import { useState } from "react/cjs/react.development";
+import React, { useEffect, useState } from "react";
 import Burger from "./Burger";
 import styles from "./Navbar.module.scss";
 import PitekLogo from "./PitekLogo";
@@ -192,9 +190,9 @@ const Navbar = ({
               />
             </div>
             <form onSubmit={handleSubmit}>
-              <h4>We'd love to work with you!</h4>
+              <h4>{"We'd love to work with you!"}</h4>
               <div className={styles.radioGroup}>
-                <label for="brief" className={styles.customRadio}>
+                <label htmlFor="brief" className={styles.customRadio}>
                   BRIEF US
                   <input
                     id="brief"
@@ -205,7 +203,7 @@ const Navbar = ({
                   />
                   <span className={styles.checkmark}></span>
                 </label>
-                <label for="join" className={styles.customRadio}>
+                <label htmlFor="join" className={styles.customRadio}>
                   JOIN OUR TEAM
                   <input
                     id="join"
