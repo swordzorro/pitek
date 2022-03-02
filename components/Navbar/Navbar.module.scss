@@ -62,6 +62,7 @@
 
   .menuContent {
     display: flex;
+    overflow: hidden;
     overflow-y: scroll;
     min-width: 100vw;
     min-height: 100vh;
