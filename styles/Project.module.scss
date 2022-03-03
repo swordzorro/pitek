@@ -1,0 +1,122 @@
+@import "./sass/variables";
+.projectPage {
+  max-height: 100vh;
+  height: 100vh;
+  //   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  @media (max-width: 1025px) {
+  }
+  .projectContent {
+    display: flex;
+    flex: 1;
+    padding-top: 92px;
+    height: calc(100% - 1820px);
+    @media (max-width: 1025px) {
+      height: auto;
+      flex-direction: column;
+    }
+    .banner {
+      flex-basis: 30%;
+      background-image: url("/projects/ecoe_banner.png");
+      background-position: center;
+      background-size: cover;
+      @media (max-width: 1025px) {
+        overflow-y: unset;
+        flex: unset;
+        height: 640px;
+      }
+    }
+    .projectInfo {
+      flex: 1;
+      padding: 120px 160px;
+      overflow-y: scroll;
+      background: #f8fafa;
+      box-shadow: -8px 0px 32px rgba(0, 0, 0, 0.1);
+
+      display: flex;
+      flex-direction: column;
+      gap: 64px;
+      @media (max-width: 1025px) {
+        overflow-y: unset;
+        flex: unset;
+        padding: 60px 80px;
+        @media (max-width: 450px) {
+          padding: 60px 30px;
+        }
+      }
+      p {
+        font-weight: 300;
+      }
+      .title {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      .list {
+        display: flex;
+        gap: 160px;
+        @media (max-width: 1025px) {
+          gap: 0;
+          justify-content: space-between;
+        }
+        .col {
+          display: flex;
+          flex-direction: column;
+          gap: 16px;
+          p:nth-child(1) {
+            font-weight: 500;
+            font-size: 24px;
+            line-height: 120%;
+            letter-spacing: 0.04em;
+            color: #cccccc;
+          }
+        }
+      }
+
+      .categoryBlock {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        h3 {
+          color: $primary-red;
+        }
+      }
+      .projectImage {
+        @media (max-width: 450px) {
+          margin: 0 -30px;
+        }
+      }
+
+      .projectFooter {
+        border-top: 1px solid #cccccc;
+        padding-top: 16px;
+        display: flex;
+        justify-content: space-between;
+        @media (max-width: 450px) {
+          flex-direction: column;
+          justify-content: unset;
+          align-items: center;
+          gap: 40px;
+        }
+        .footerItem1 {
+          display: flex;
+          align-items: center;
+          gap: 32px;
+        }
+        .footerItem2 {
+          display: flex;
+          align-items: center;
+          gap: 40px;
+          color: $primary-red;
+          @media (max-width: 450px) {
+            flex-direction: column;
+            gap: 16px;
+          }
+        }
+      }
+    }
+  }
+}

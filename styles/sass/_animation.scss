@@ -40,20 +40,23 @@
   100% {
     opacity: 1;
     transform: translateY(-60px);
+    -webkit-transform: translateY(-60px);
   }
 }
 @keyframes slideOut {
   0% {
     transform: translateY(-60px);
+    -webkit-transform: translateY(-60px);
     opacity: 1;
   }
   100% {
     opacity: 0;
     transform: translateY(-120px);
+    -webkit-transform: translateY(-120px);
   }
 }
 
-//
+//====
 
 @keyframes moveX {
   from {
@@ -71,6 +74,25 @@
     background-position-y: calc(var(--projectSpriteHeight) * -6);
   }
 }
+// NOTE:webkit
+
+@-webkit-keyframes moveX {
+  from {
+    background-position-x: 0;
+  }
+  to {
+    background-position-x: calc(var(--projectSpriteWidth) * -10);
+  }
+}
+@-webkit-keyframes moveY {
+  from {
+    background-position-y: 0;
+  }
+  to {
+    background-position-y: calc(var(--projectSpriteHeight) * -6);
+  }
+}
+// =====
 
 @media (max-width: 1025px) {
   @keyframes moveX {
@@ -89,7 +111,25 @@
       background-position-y: calc(var(--projectSpriteHeightIpad) * -6);
     }
   }
+  // NOTE:webkit
+  @-webkit-keyframes moveX {
+    from {
+      background-position-x: 0;
+    }
+    to {
+      background-position-x: calc(var(--projectSpriteWidthIpad) * -10);
+    }
+  }
+  @-webkit-keyframes moveY {
+    from {
+      background-position-y: 0;
+    }
+    to {
+      background-position-y: calc(var(--projectSpriteHeightIpad) * -6);
+    }
+  }
 }
+// =====
 @media (max-width: 429px) {
   @keyframes moveX {
     from {
@@ -107,4 +147,22 @@
       background-position-y: calc(var(--projectSpriteHeightPhone) * -6);
     }
   }
+  // NOTE:webkit
+  @-webkit-keyframes moveX {
+    from {
+      background-position-x: 0;
+    }
+    to {
+      background-position-x: calc(var(--projectSpriteWidthPhone) * -10);
+    }
+  }
+  @-webkit-keyframes moveY {
+    from {
+      background-position-y: 0;
+    }
+    to {
+      background-position-y: calc(var(--projectSpriteHeightPhone) * -6);
+    }
+  }
 }
+// =====
