@@ -3,9 +3,11 @@ import React, { useEffect, useState } from "react";
 import Burger from "./Burger";
 import styles from "./Navbar.module.scss";
 import PitekLogo from "./PitekLogo";
+import { useRouter } from "next/router";
 
 const Navbar = ({
-  navWhite,
+  showNav = true,
+  scrollY = 0,
   showMenu = false,
   showForm = false,
   setShowMenu,
@@ -21,6 +23,8 @@ const Navbar = ({
   });
 
   const [error, setError] = useState({});
+
+  const router = useRouter();
 
   const validate = (value) => {
     let emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
@@ -56,17 +60,26 @@ const Navbar = ({
         (document.body.style.position = "static");
     }
   }, [showMenu]);
+  console.log(scrollY);
   return (
     <>
-      <div className={styles.navbar}>
-        <div className={styles.logo}>
+      <div
+        className={`${styles.navbar}
+        ${showNav && scrollY > 300 ? styles.showNav : ""} 
+        ${!showNav && scrollY > 10 ? styles.hideNav : ""} 
+        `}
+        style={{
+          transform: scrollY === 0 && "translateY(0)",
+        }}
+      >
+        <div className={styles.logo} onClick={() => router.push("/")}>
           <PitekLogo
-            leftColor={navWhite ? "#FFF" : "#002266"}
-            rightColor={navWhite ? "#FFF" : "#FF3355"}
+            leftColor={!showNav ? "#FFF" : "#002266"}
+            rightColor={!showNav ? "#FFF" : "#FF3355"}
           />
         </div>
         <div className={styles.burger} onClick={() => setShowMenu(true)}>
-          <Burger fill={navWhite ? "#fff" : "#002266"} />
+          <Burger fill={!showNav ? "#fff" : "#002266"} />
         </div>
       </div>
       <div
@@ -155,6 +168,15 @@ const Navbar = ({
             <h2>SERVICE</h2>
             <h2>PROJECTS</h2>
             <h2>CONTACT</h2>
+            <div className={styles.sendMessage}>
+              <p>SAY HELLO</p>
+              <button
+                className="link-btn-white"
+                onClick={() => setShowForm(true)}
+              >
+                SEND A MESSAGE
+              </button>
+            </div>
           </div>
 
           {/* TODO: Contact Form */}

@@ -1,4 +1,23 @@
 @import "../../styles/sass/variables";
+@import "../../styles/sass/animation";
+
+.showNav {
+  background-color: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(40px);
+  transform: translateY(0);
+  transition: 0.3s linear;
+
+  // animation: slideDown 0.3s linear 1;
+  // -webkit-animation: slideDown 0.3s linear 1;
+  // animation-fill-mode: forwards;
+}
+.hideNav {
+  // animation: slideUp 0.3s linear 1;
+  // -webkit-animation: slideUp 0.3s linear 1;
+  // animation-fill-mode: both;
+  transform: translateY(-100%);
+  transition: 0.3s linear;
+}
 
 .navbar {
   position: fixed;
@@ -9,6 +28,13 @@
 
   display: flex;
   justify-content: space-between;
+  transition: 0.3s linear;
+
+  // transform: translateY(-100%);
+
+  @media (max-width: 1025px) {
+    padding: 16px 20px;
+  }
 
   svg {
     path,
@@ -19,9 +45,19 @@
 
   .logo {
     transition: 0.5s all ease;
+    @media (max-width: 1025px) {
+      svg {
+        max-width: 60px;
+      }
+    }
   }
   .burger {
     cursor: pointer;
+    @media (max-width: 1025px) {
+      svg {
+        max-width: 20px;
+      }
+    }
   }
 }
 .navMenu {
@@ -48,6 +84,7 @@
 
   .menuContent {
     display: flex;
+    overflow: hidden;
     overflow-y: scroll;
     min-width: 100vw;
     min-height: 100vh;
@@ -62,7 +99,7 @@
     }
 
     @media (max-width: 430px) {
-      height: 940px;
+      //   height: 940px;
       overflow-y: scroll;
     }
   }
@@ -289,7 +326,12 @@
       flex: 1;
       flex-basis: 60%;
     }
-
+    .sendMessage {
+      display: none;
+      @media (max-width: 430px) {
+        display: block;
+      }
+    }
     .circlePatterns {
       position: absolute;
       bottom: -140px;

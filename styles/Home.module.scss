@@ -136,6 +136,7 @@
         position: absolute;
         bottom: -32px;
         animation: slide-down 1.4s linear infinite;
+        -webkit-animation: slide-down 1.4s linear infinite;
       }
     }
   }
@@ -179,6 +180,9 @@
         background: url("/pitek_logo_sprite.png") no-repeat;
 
         animation: spriteMoveX 0.4s steps(10) infinite,
+          spriteMoveY 4.8s steps(12) infinite;
+
+        -webkit-animation: spriteMoveX 0.4s steps(10) infinite,
           spriteMoveY 4.8s steps(12) infinite;
         background-size: 1000% 1200%;
       }
@@ -239,11 +243,16 @@
           }
           &.show {
             animation: slideIn 1s ease;
+            -webkit-animation: slideIn 1s ease;
+
             animation-fill-mode: forwards;
+            -webkit-animation-fill-mode: forwards;
           }
           &.notShow {
             animation: slideOut 1s ease;
+            -webkit-animation: slideOut 1s ease;
             animation-fill-mode: none;
+            -webkit-animation-fill-mode: none;
           }
         }
       }
@@ -423,6 +432,8 @@
           bottom: 0;
           background: url("/projects/project_spritesheet.png") no-repeat 0 0%;
           animation: moveX 0.5s steps(10) infinite, moveY 3s steps(6) infinite;
+          -webkit-animation: moveX 0.5s steps(10) infinite,
+            moveY 3s steps(6) infinite;
           // actual bg width / display width => *100%
           background-size: 1000% 600%;
         }

@@ -1,5 +1,5 @@
 import "../styles/globals.scss";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { ParallaxProvider } from "react-scroll-parallax";
 
 function MyApp({ Component, pageProps, router }) {
@@ -17,9 +17,11 @@ function MyApp({ Component, pageProps, router }) {
     //     },
     //   }}
     // >
-    <ParallaxProvider>
-      <Component {...pageProps} />
-    </ParallaxProvider>
+    <AnimatePresence exitBeforeEnter>
+      <ParallaxProvider>
+        <Component {...pageProps} />
+      </ParallaxProvider>
+    </AnimatePresence>
     // </motion.div>
   );
 }
