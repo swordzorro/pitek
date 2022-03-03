@@ -6,7 +6,7 @@ const withTransition = (OriginalComponent) => {
     <>
       <motion.div
         className="slide-red"
-        animate={{ scaleX: 0 }}
+        animate={{ translateX: "100%" }}
         exit={{ scaleX: 0 }}
         transition={{ duration: 1.5, ease: "easeInOut" }}
       ></motion.div>

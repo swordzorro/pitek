@@ -1,4 +1,23 @@
 @import "../../styles/sass/variables";
+@import "../../styles/sass/animation";
+
+.showNav {
+  background-color: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(40px);
+  transform: translateY(0);
+  transition: 0.3s linear;
+
+  // animation: slideDown 0.3s linear 1;
+  // -webkit-animation: slideDown 0.3s linear 1;
+  // animation-fill-mode: forwards;
+}
+.hideNav {
+  // animation: slideUp 0.3s linear 1;
+  // -webkit-animation: slideUp 0.3s linear 1;
+  // animation-fill-mode: both;
+  transform: translateY(-100%);
+  transition: 0.3s linear;
+}
 
 .navbar {
   position: fixed;
@@ -9,6 +28,9 @@
 
   display: flex;
   justify-content: space-between;
+  transition: 0.3s linear;
+
+  // transform: translateY(-100%);
 
   @media (max-width: 1025px) {
     padding: 16px 20px;

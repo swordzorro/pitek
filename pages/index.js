@@ -1,8 +1,7 @@
 import Head from "next/head";
 import Image from "next/image";
-import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useInView } from "react-intersection-observer";
-import { Navigation } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import Footer from "../components/Footer";
 import styles from "../styles/Home.module.scss";
@@ -11,6 +10,8 @@ import { Parallax } from "react-scroll-parallax";
 import Navbar from "../components/Navbar";
 import { useRouter } from "next/router";
 import withTransition from "../HOC/withTransition";
+import { motion } from "framer-motion";
+import useVerticalScrollDirection from "../helper/useGetScrollDirection";
 
 const slideTextArr = ["unique", "modern", "creative"];
 
@@ -40,7 +41,6 @@ function Home() {
   const [aboutSectionRef, aboutSectionInview] = useInView({
     threshold: [0.6, 0.1],
   });
-  console.log(aboutSectionInview);
   const { scrollY } = useWindowScrollPositions();
 
   useEffect(() => {
@@ -93,6 +93,10 @@ function Home() {
     return () => clearInterval(timer); // cleanup the timer
   }, []);
 
+  const scrollDirection = useVerticalScrollDirection();
+
+  console.log(scrollDirection);
+
   return (
     <div className={styles.container}>
       <Head>
@@ -102,11 +106,12 @@ function Home() {
       </Head>
       {/* Page */}
       <Navbar
-        navWhite={!aboutSectionInview}
+        showNav={scrollY > 300 && scrollDirection === "up" ? true : false}
         showForm={showForm}
         setShowForm={setShowForm}
         showMenu={showMenu}
         setShowMenu={setShowMenu}
+        scrollY={scrollY}
       />
       <Parallax
         // speed={-10}
