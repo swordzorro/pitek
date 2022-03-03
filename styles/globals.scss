@@ -198,3 +198,38 @@ input[type="text"] {
     letter-spacing: 0.04em;
   }
 }
+//
+
+.slide-red {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100%;
+  background: $primary-red;
+  transform-origin: right;
+  z-index: 999;
+}
+
+.slide-white {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100%;
+  background: white;
+  transform-origin: right;
+  z-index: 999;
+  animation-delay: 1s;
+
+  .white-layer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100%;
+    background: $primary-red;
+    transform-origin: left;
+    z-index: 999;
+  }
+}

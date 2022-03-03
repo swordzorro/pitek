@@ -4,6 +4,7 @@ import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 import styles from "../../styles/Project.module.scss";
 import { useRef } from "react";
+import withTransition from "../../HOC/withTransition";
 
 const Ecoe = () => {
   const [showMenu, setShowMenu] = useState(false);
@@ -118,4 +119,4 @@ const Ecoe = () => {
   );
 };
 
-export default Ecoe;
+export default withTransition(Ecoe);

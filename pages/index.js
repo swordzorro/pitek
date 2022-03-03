@@ -10,10 +10,11 @@ import { useWindowScrollPositions } from "../utils/useWindowScrollPositions";
 import { Parallax } from "react-scroll-parallax";
 import Navbar from "../components/Navbar";
 import { useRouter } from "next/router";
+import withTransition from "../HOC/withTransition";
 
 const slideTextArr = ["unique", "modern", "creative"];
 
-export default function Home() {
+function Home() {
   const [slideText, setSlideText] = useState(0);
   const [swiper, setSwiper] = useState({});
   const [overlayPercent, setOverlayPercent] = useState(1);
@@ -122,7 +123,7 @@ export default function Home() {
             maxHeight: bannerVideoRef?.current?.getBoundingClientRect()?.height,
           }}
         >
-          <video loop muted autoPlay ref={bannerVideoRef}>
+          <video loop muted autoPlay ref={bannerVideoRef} playsInline>
             <source src="/mp4/banner_fullhd.mp4" />
           </video>
           <div className={styles.bannerBlur}></div>
@@ -336,7 +337,7 @@ export default function Home() {
 
       <section className={`${styles.project}`} ref={projectSectionRef}>
         <div className={styles.projectBg}>
-          <video loop muted autoPlay>
+          <video loop muted autoPlay playsInline>
             <source src="/mp4/background.mp4" />
           </video>
         </div>
@@ -642,3 +643,4 @@ export default function Home() {
     </div>
   );
 }
+export default withTransition(Home);
