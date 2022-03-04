@@ -11,12 +11,13 @@ const Ecoe = () => {
   const [showForm, setShowForm] = useState(false);
 
   const topRef = useRef();
+
   const scrollTo = (ref) => {
-    console.log(ref);
     if (ref && ref.current) {
       ref.current.scrollIntoView({ behavior: "smooth", block: "start" });
     }
   };
+
   return (
     <>
       <div className={styles.projectPage}>
@@ -108,12 +109,12 @@ const Ecoe = () => {
               </div>
               <div className={styles.footerItem2}>
                 <div className="sub-title">Do you like this project ?</div>
-                <button className="link-btn-red">BRIEF US</button>
+                <button className="btn btn-red">BRIEF US</button>
               </div>
             </div>
           </div>
         </div>
-        <Footer />
+        {/* <Footer /> */}
       </div>
     </>
   );
