@@ -60,7 +60,6 @@ const Navbar = ({
         (document.body.style.position = "static");
     }
   }, [showMenu]);
-  console.log(scrollY);
   return (
     <>
       <div
@@ -115,7 +114,7 @@ const Navbar = ({
             <div className={styles.sendMessage}>
               <p>SAY HELLO</p>
               <button
-                className="link-btn-white"
+                className="btn btn-white"
                 onClick={() => setShowForm(true)}
               >
                 SEND A MESSAGE
@@ -171,7 +170,7 @@ const Navbar = ({
             <div className={styles.sendMessage}>
               <p>SAY HELLO</p>
               <button
-                className="link-btn-white"
+                className="btn btn-white"
                 onClick={() => setShowForm(true)}
               >
                 SEND A MESSAGE
@@ -255,11 +254,11 @@ const Navbar = ({
                 </div>
               </div>
               <div className={styles.btnGroup}>
-                <button className="link-btn-red" type="submit">
+                <button className="btn btn-red" type="submit">
                   SEND MESSAGE
                 </button>
                 <button
-                  className="link-btn-gray"
+                  className="btn btn-gray"
                   type="button"
                   onClick={() => setShowForm(false)}
                 >
