@@ -27,7 +27,7 @@ const Footer = ({ setShowForm, setShowMenu }) => {
         <div className={styles.sendMessage}>
           <p>SAY HELLO</p>
           <button
-            className="link-btn-white"
+            className="btn btn-white"
             onClick={() => {
               // setShowMenu(true);
               setShowForm(true);
