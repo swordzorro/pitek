@@ -24,6 +24,9 @@ function Home() {
   const [showMenu, setShowMenu] = useState(false);
   const [showForm, setShowForm] = useState(false);
 
+  const [logoSpriteWidth, setLogoSpriteWidth] = useState(0);
+  const [logoSpriteHeight, setLogoSpriteHeight] = useState(0);
+
   const projectSpriteRef = useRef();
   const projectSpriteIpadRef = useRef();
   const projectSpritePhoneRef = useRef();
@@ -79,7 +82,15 @@ function Home() {
       "--logoSpriteHeight",
       `${logoSpriteRef?.current?.getBoundingClientRect().height}px`
     );
-  }, []);
+
+    setLogoSpriteWidth(logoSpriteRef?.current?.getBoundingClientRect()?.width);
+    setLogoSpriteHeight(
+      logoSpriteRef?.current?.getBoundingClientRect()?.height
+    );
+  }, [
+    logoSpriteRef?.current?.getBoundingClientRect()?.width,
+    logoSpriteRef?.current?.getBoundingClientRect()?.height,
+  ]);
 
   useEffect(() => {
     let timer = setInterval(() => {

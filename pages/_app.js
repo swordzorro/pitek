@@ -1,8 +1,8 @@
-import "../styles/globals.scss";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence } from "framer-motion";
 import { ParallaxProvider } from "react-scroll-parallax";
+import "../styles/globals.scss";
 
-function MyApp({ Component, pageProps, router }) {
+function MyApp({ Component, pageProps }) {
   return (
     // <motion.div
     //   key={router.route}

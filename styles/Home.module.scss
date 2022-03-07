@@ -185,6 +185,10 @@
         -webkit-animation: spriteMoveX 0.4s steps(10) infinite,
           spriteMoveY 4.8s steps(12) infinite;
         background-size: 1000% 1200%;
+
+        @media (max-width: 600px) {
+          animation: none;
+        }
       }
       .visualLayer1 {
         position: absolute;
@@ -436,6 +440,10 @@
             moveY 3s steps(6) infinite;
           // actual bg width / display width => *100%
           background-size: 1000% 600%;
+
+          @media (max-width: 600px) {
+            animation: none;
+          }
         }
       }
 
