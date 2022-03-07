@@ -23,8 +23,6 @@
   justify-content: space-between;
   transition: 0.3s linear;
 
-  // transform: translateY(-100%);
-
   @media (max-width: 1025px) {
     padding: 16px 20px;
   }
@@ -97,7 +95,7 @@
     flex-basis: 60%;
     background: $primary-red;
     transform: translateX(-100%);
-    transition: 0.8s ease-out;
+    // transition: 0.8s ease-out;
 
     padding: 80px;
 
@@ -133,6 +131,10 @@
     &.showMenu {
       transition: 0.8s ease-in;
       transform: translateX(0);
+    }
+    &.hideMenu {
+      transition: 0.8s ease-in;
+      transform: translateX(-100%);
     }
     .desc {
       max-width: 500px;
@@ -336,6 +338,10 @@
     &.showMenu {
       transition: 0.8s ease-in;
       transform: translateX(0);
+    }
+    &.hideMenu {
+      transition: 0.8s ease-in;
+      transform: translateX(100%);
     }
     .logoMenuBlue {
       display: none;

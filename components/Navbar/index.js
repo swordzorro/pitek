@@ -86,7 +86,11 @@ const Navbar = ({
         style={{ visibility: showForm && "visible" }}
       >
         <div className={styles.menuContent}>
-          <div className={`${styles.menuRed} ${showMenu && styles.showMenu}`}>
+          <div
+            className={`${styles.menuRed} ${
+              showMenu ? styles.showMenu : styles.hideMenu
+            }`}
+          >
             <div className={styles.arrowPatterns}>
               <Image
                 src={"/icons/arrow-pattern-white-160x160.svg"}
@@ -137,7 +141,11 @@ const Navbar = ({
             </div>
           </div>
 
-          <div className={`${styles.menuBlue} ${showMenu && styles.showMenu}`}>
+          <div
+            className={`${styles.menuBlue} ${
+              showMenu ? styles.showMenu : styles.hideMenu
+            }`}
+          >
             <div className={styles.circlePatterns}>
               <Image
                 src={"/home-page/circle-pattern-320x320.svg"}
