@@ -23,6 +23,7 @@ function Home() {
 
   const [showMenu, setShowMenu] = useState(false);
   const [showForm, setShowForm] = useState(false);
+  const [isVideoLoaded, setIsVideoLoaded] = useState(false);
 
   const projectSpriteRef = useRef();
   const projectSpriteIpadRef = useRef();
@@ -54,18 +55,23 @@ function Home() {
         return updatedCounter;
       }); // use callback function to set the state
     }, 3000);
+
+    let video = document.getElementById("banner-video");
+    document.body.style.overflow = "hidden";
+    if (video.readyState === 4) {
+      setIsVideoLoaded(true);
+      document.body.style.overflow = "unset";
+    }
     return () => clearInterval(timer); // cleanup the timer
   }, []);
 
   const scrollDirection = useVerticalScrollDirection();
 
-  const [isVideoLoaded, setIsVideoLoaded] = useState(false);
-
   // console.log(isVideoLoaded);
 
   return (
     <>
-      {/* {!isVideoLoaded && <SplashScreen />} */}
+      {!isVideoLoaded && <SplashScreen />}
       <div className={styles.container}>
         <Head>
           <title>Pitek- One Simple</title>
@@ -108,6 +114,7 @@ function Home() {
                 setIsVideoLoaded(true);
               }}
               src="/mp4/banner_fullhd.mp4"
+              id="banner-video"
               // onLoadedMetadata={() => setIsVideoLoaded(true)}
               // onLoadStart={() => console.log("123")}
               // onLoadedData={onLoadedData}
