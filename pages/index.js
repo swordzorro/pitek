@@ -62,7 +62,9 @@ function Home() {
   useEffect(() => {
     let video = document.getElementById("banner-video");
     if (video.readyState === 4) {
-      setIsVideoLoaded(true);
+      setTimeout(() => {
+        setIsVideoLoaded(true);
+      }, 500);
     }
   }, []);
 
@@ -72,7 +74,7 @@ function Home() {
 
   return (
     <>
-      {!isVideoLoaded && <SplashScreen />}
+      <SplashScreen style={{ opacity: isVideoLoaded ? 0 : 1 }} />
       <div className={styles.container}>
         <Head>
           <title>Pitek- One Simple</title>
@@ -656,4 +658,4 @@ function Home() {
     </>
   );
 }
-export default withTransition(Home);
+export default Home;
