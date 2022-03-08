@@ -146,6 +146,11 @@
     padding: 10%;
     background: white;
     z-index: 1;
+    justify-content: center;
+
+    @media (max-width: 1440px) {
+      gap: 60px;
+    }
 
     @media (max-width: 1024px) {
       flex-direction: column-reverse;
@@ -159,9 +164,25 @@
       width: 100%;
       max-width: 600px;
       max-height: 400px;
+      min-width: 600px;
+      min-height: 400px;
+      width: 600px;
+      height: 400px;
       flex: 1;
       align-self: center;
       height: auto;
+      @media (max-width: 1440px) {
+        transform: scale(0.85);
+      }
+      @media (max-width: 1440px) {
+        transform: scale(0.85);
+      }
+      @media (max-width: 450px) {
+        transform: scale(0.6);
+      }
+      @media (max-width: 320px) {
+        transform: scale(0.5);
+      }
 
       // overflow: visible;
 
@@ -184,11 +205,22 @@
 
         -webkit-animation: spriteMoveX 0.4s steps(10) infinite,
           spriteMoveY 4.8s steps(12) infinite;
-        background-size: 1000% 1200%;
 
-        @media (max-width: 600px) {
-          animation: none;
-        }
+        // animation-name: spriteMoveX, spriteMoveY;
+        // animation-duration: 400ms, 4800ms;
+        // animation-delay: 0ms, 0ms;
+        // animation-timing-function: steps(10), steps(12);
+        // animation-iteration-count: infinite, infinite;
+
+        background-size: 1000% 1200%;
+        min-width: 600px;
+        min-height: 400px;
+        width: 600px;
+        height: 400px;
+
+        // @media (max-width: 600px) {
+        //   animation: none;
+        // }
       }
       .visualLayer1 {
         position: absolute;
@@ -255,8 +287,8 @@
           &.notShow {
             animation: slideOut 1s ease;
             -webkit-animation: slideOut 1s ease;
-            animation-fill-mode: none;
-            -webkit-animation-fill-mode: none;
+            animation-fill-mode: backwards;
+            -webkit-animation-fill-mode: backwards;
           }
         }
       }
@@ -416,37 +448,6 @@
         flex-direction: column;
       }
 
-      .projectSpriteSheet {
-        position: relative;
-        width: 100%;
-        max-width: 440px;
-        max-height: 640px;
-
-        &:before {
-          content: "";
-          display: block;
-          padding-top: 145.4545%;
-        }
-
-        .box {
-          position: absolute;
-          top: 0;
-          left: 0;
-          right: 0;
-          bottom: 0;
-          background: url("/projects/project_spritesheet.png") no-repeat 0 0%;
-          animation: moveX 0.5s steps(10) infinite, moveY 3s steps(6) infinite;
-          -webkit-animation: moveX 0.5s steps(10) infinite,
-            moveY 3s steps(6) infinite;
-          // actual bg width / display width => *100%
-          background-size: 1000% 600%;
-
-          @media (max-width: 600px) {
-            animation: none;
-          }
-        }
-      }
-
       // TODO:
 
       .mySwiperPhone {
@@ -475,19 +476,16 @@
       .projectCard {
         filter: drop-shadow(0px 8px 32px rgba(0, 128, 160, 0.08));
         border-radius: 24px;
+        overflow: hidden;
         position: relative;
 
         display: flex;
         justify-content: center;
 
-        // @media (max-width: 769px) {
-        //   min-width: 33%;
-        // }
+        > span {
+          // border-radius: 24px;
+        }
 
-        // @media (max-width: 425px) {
-        //   max-width: 325px;
-        //   max-height: 400px;
-        // }
         .info {
           position: absolute;
           bottom: 6%;
