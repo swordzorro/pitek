@@ -10,9 +10,9 @@ import { Parallax } from "react-scroll-parallax";
 import Navbar from "../components/Navbar";
 import { useRouter } from "next/router";
 import withTransition from "../HOC/withTransition";
-import { motion } from "framer-motion";
 import useVerticalScrollDirection from "../helper/useGetScrollDirection";
 import SplashScreen from "../components/SplashScreen";
+import projectGif from "../public/home-page/pitek_card_project.gif";
 
 const slideTextArr = ["unique", "modern", "creative"];
 
@@ -23,9 +23,7 @@ function Home() {
 
   const [showMenu, setShowMenu] = useState(false);
   const [showForm, setShowForm] = useState(false);
-
-  const [logoSpriteWidth, setLogoSpriteWidth] = useState(0);
-  const [logoSpriteHeight, setLogoSpriteHeight] = useState(0);
+  const [isVideoLoaded, setIsVideoLoaded] = useState(false);
 
   const projectSpriteRef = useRef();
   const projectSpriteIpadRef = useRef();
@@ -48,51 +46,6 @@ function Home() {
   const { scrollY } = useWindowScrollPositions();
 
   useEffect(() => {
-    const root = document?.documentElement;
-    root?.style.setProperty(
-      "--projectSpriteWidth",
-      `${projectSpriteRef?.current?.getBoundingClientRect()?.width}px`
-    );
-    root?.style.setProperty(
-      "--projectSpriteHeight",
-      `${projectSpriteRef?.current?.getBoundingClientRect().height}px`
-    );
-    root?.style.setProperty(
-      "--projectSpriteWidthIpad",
-      `${projectSpriteIpadRef?.current?.getBoundingClientRect()?.width}px`
-    );
-    root?.style.setProperty(
-      "--projectSpriteHeightIpad",
-      `${projectSpriteIpadRef?.current?.getBoundingClientRect().height}px`
-    );
-    root?.style.setProperty(
-      "--projectSpriteWidthPhone",
-      `${projectSpritePhoneRef?.current?.getBoundingClientRect()?.width}px`
-    );
-    root?.style.setProperty(
-      "--projectSpriteHeightPhone",
-      `${projectSpritePhoneRef?.current?.getBoundingClientRect().height}px`
-    );
-    // logo
-    root?.style.setProperty(
-      "--logoSpriteWidth",
-      `${logoSpriteRef?.current?.getBoundingClientRect()?.width}px`
-    );
-    root?.style.setProperty(
-      "--logoSpriteHeight",
-      `${logoSpriteRef?.current?.getBoundingClientRect().height}px`
-    );
-
-    setLogoSpriteWidth(logoSpriteRef?.current?.getBoundingClientRect()?.width);
-    setLogoSpriteHeight(
-      logoSpriteRef?.current?.getBoundingClientRect()?.height
-    );
-  }, [
-    logoSpriteRef?.current?.getBoundingClientRect()?.width,
-    logoSpriteRef?.current?.getBoundingClientRect()?.height,
-  ]);
-
-  useEffect(() => {
     let timer = setInterval(() => {
       setSlideText((prevSlideText) => {
         const updatedCounter = prevSlideText + 1;
@@ -102,18 +55,23 @@ function Home() {
         return updatedCounter;
       }); // use callback function to set the state
     }, 3000);
+
+    let video = document.getElementById("banner-video");
+    document.body.style.overflow = "hidden";
+    if (video.readyState === 4) {
+      setIsVideoLoaded(true);
+      document.body.style.overflow = "unset";
+    }
     return () => clearInterval(timer); // cleanup the timer
   }, []);
 
   const scrollDirection = useVerticalScrollDirection();
 
-  const [isVideoLoaded, setIsVideoLoaded] = useState(false);
-
   // console.log(isVideoLoaded);
 
   return (
     <>
-      {/* {!isVideoLoaded && <SplashScreen />} */}
+      {!isVideoLoaded && <SplashScreen />}
       <div className={styles.container}>
         <Head>
           <title>Pitek- One Simple</title>
@@ -156,6 +114,7 @@ function Home() {
                 setIsVideoLoaded(true);
               }}
               src="/mp4/banner_fullhd.mp4"
+              id="banner-video"
               // onLoadedMetadata={() => setIsVideoLoaded(true)}
               // onLoadStart={() => console.log("123")}
               // onLoadedData={onLoadedData}
@@ -219,7 +178,7 @@ function Home() {
                 ></Image>
               </div>
 
-              <div className={styles.logoSprite}></div>
+              <div className={styles.logoSprite} id="logo"></div>
             </div>
             {/* </Parallax>*/}
             <Parallax
@@ -239,6 +198,7 @@ function Home() {
                   `}
                       style={{
                         opacity: slideText === index ? 1 : 0,
+                        // transition: "1s all ease",
                       }}
                     >
                       {item}
@@ -262,112 +222,116 @@ function Home() {
             {/* </section> */}
           </Parallax>
           {/* TODO: service */}
-          <div className={styles.service}>
-            <Parallax translateY={[-20, 20]} className={styles.circlePattern}>
-              <Image
-                src="/home-page/circle-pattern-320x320.svg"
-                width={320}
-                height={320}
-                alt=""
-              />
-            </Parallax>
-            <Parallax translateY={[20, 0]} className={styles.arrowPattern}>
-              <Image
-                src="/home-page/arrow-pattern-160x160.svg"
-                width={160}
-                height={160}
-                alt=""
-              />
-            </Parallax>
-            <Parallax translateY={[-20, 20]} className={styles.plusPattern}>
-              <Image
-                src="/home-page/plus-pattern-320x160.svg"
-                width={320}
-                height={160}
-                alt=""
-              />
-            </Parallax>
-            <div className={styles.contentWrapper}>
-              <Parallax translateY={[-20, 0]}>
-                <h1>Our service</h1>
+          <Parallax translateY={[0, -15]}>
+            <div className={styles.service}>
+              <Parallax translateY={[-20, 20]} className={styles.circlePattern}>
+                <Image
+                  src="/home-page/circle-pattern-320x320.svg"
+                  width={320}
+                  height={320}
+                  alt=""
+                />
               </Parallax>
-              <div className={styles.cards}>
-                <div className={styles.card}>
-                  <div className={styles.icon}>
-                    <Image
-                      src={"/home-page/glassmorphims-dev.png"}
-                      width={120}
-                      height={120}
-                      alt=""
-                    />
-                  </div>
-                  <div className={styles.cardContent}>
-                    <h5>
-                      Software <br /> development
-                    </h5>
-                    <p>
-                      We architect, build, and deliver digital products entirely
-                      in-house.
-                    </p>
-                    <div className={styles.cardList}>
-                      <p>Product Development</p>
-                      <p>CMS Integration</p>
-                      <p>3rd Party Integration</p>
-                      <p>API Design & Implementation</p>
+              <Parallax translateY={[20, 0]} className={styles.arrowPattern}>
+                <Image
+                  src="/home-page/arrow-pattern-160x160.svg"
+                  width={160}
+                  height={160}
+                  alt=""
+                />
+              </Parallax>
+              <Parallax translateY={[-20, 20]} className={styles.plusPattern}>
+                <Image
+                  src="/home-page/plus-pattern-320x160.svg"
+                  width={320}
+                  height={160}
+                  alt=""
+                />
+              </Parallax>
+              <div className={styles.contentWrapper}>
+                <Parallax translateY={[-20, 0]}>
+                  <h1>Our service</h1>
+                </Parallax>
+                <div className={styles.cards}>
+                  <div className={styles.card}>
+                    <div className={styles.icon}>
+                      <Image
+                        src={"/home-page/glassmorphims-dev.png"}
+                        width={120}
+                        height={120}
+                        alt=""
+                      />
+                    </div>
+                    <div className={styles.cardContent}>
+                      <h5>
+                        Software <br /> development
+                      </h5>
+                      <p>
+                        We architect, build, and deliver digital products
+                        entirely in-house.
+                      </p>
+                      <div className={styles.cardList}>
+                        <p>Product Development</p>
+                        <p>CMS Integration</p>
+                        <p>3rd Party Integration</p>
+                        <p>API Design & Implementation</p>
+                      </div>
                     </div>
                   </div>
-                </div>
-                <div className={styles.card}>
-                  <div className={styles.icon}>
-                    <Image
-                      src={"/home-page/glassmorphims-iot.png"}
-                      width={120}
-                      height={120}
-                      alt=""
-                    />
-                  </div>
-                  <div className={styles.cardContent}>
-                    <h5>
-                      IoT software <br /> and services
-                    </h5>
-                    <p>
-                      Through the digital transformation, our products are being
-                      interconnected into intelligent systems based in IoT.
-                    </p>
-                    <p>
-                      With the brand message: <br />
-                      ONE SIMPLE — We resolve the problems with simple solution.
-                    </p>
-                    {/* <p>Product Development</p>
+                  <div className={styles.card}>
+                    <div className={styles.icon}>
+                      <Image
+                        src={"/home-page/glassmorphims-iot.png"}
+                        width={120}
+                        height={120}
+                        alt=""
+                      />
+                    </div>
+                    <div className={styles.cardContent}>
+                      <h5>
+                        IoT software <br /> and services
+                      </h5>
+                      <p>
+                        Through the digital transformation, our products are
+                        being interconnected into intelligent systems based in
+                        IoT.
+                      </p>
+                      <p>
+                        With the brand message: <br />
+                        ONE SIMPLE — We resolve the problems with simple
+                        solution.
+                      </p>
+                      {/* <p>Product Development</p>
                 <p>CMS Integration</p>
                 <p>3rd Party Integration</p>
                 <p>API Design & Implementation</p> */}
+                    </div>
                   </div>
-                </div>
-                <div className={styles.card}>
-                  <div className={styles.icon}>
-                    <Image
-                      src={"/home-page/glassmorphims-solution.png"}
-                      width={120}
-                      height={120}
-                      alt=""
-                    />
-                  </div>
-                  <div className={styles.cardContent}>
-                    <h5>
-                      Business process <br /> solution
-                    </h5>
-                    <p>
-                      We believe with our professional technology consulting and
-                      solutions team helping you achieve cost-efficiency and
-                      drive business growth with the right mix of quality
-                      standards, people and technologies.
-                    </p>
+                  <div className={styles.card}>
+                    <div className={styles.icon}>
+                      <Image
+                        src={"/home-page/glassmorphims-solution.png"}
+                        width={120}
+                        height={120}
+                        alt=""
+                      />
+                    </div>
+                    <div className={styles.cardContent}>
+                      <h5>
+                        Business process <br /> solution
+                      </h5>
+                      <p>
+                        We believe with our professional technology consulting
+                        and solutions team helping you achieve cost-efficiency
+                        and drive business growth with the right mix of quality
+                        standards, people and technologies.
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
+          </Parallax>
         </div>
 
         <section className={`${styles.project}`} ref={projectSectionRef}>
@@ -500,13 +464,13 @@ function Home() {
               </SwiperSlide>
 
               <SwiperSlide className={styles.projectCard}>
-                <div
-                  className={styles.projectSpriteSheet}
-                  ref={projectSpriteRef}
-                >
-                  <div className={styles.box}></div>
-                </div>
-
+                <Image
+                  src={projectGif}
+                  width={440}
+                  height={640}
+                  objectFit="contain"
+                  alt=""
+                />
                 <div className={styles.info}>
                   <p>New App</p>
                   <h3>
@@ -584,13 +548,13 @@ function Home() {
               </SwiperSlide>
 
               <SwiperSlide className={styles.projectCard}>
-                <div
-                  className={styles.projectSpriteSheet}
-                  ref={projectSpriteIpadRef}
-                >
-                  <div className={styles.box}></div>
-                </div>
-
+                <Image
+                  src={projectGif}
+                  width={440}
+                  height={640}
+                  objectFit="contain"
+                  alt=""
+                />
                 <div className={styles.info}>
                   <p>New App</p>
                   <h3>
@@ -668,13 +632,13 @@ function Home() {
               </SwiperSlide>
 
               <SwiperSlide className={styles.projectCard}>
-                <div
-                  className={styles.projectSpriteSheet}
-                  ref={projectSpritePhoneRef}
-                >
-                  <div className={styles.box}></div>
-                </div>
-
+                <Image
+                  src={projectGif}
+                  width={440}
+                  height={640}
+                  objectFit="contain"
+                  alt=""
+                />
                 <div className={styles.info}>
                   <p>New App</p>
                   <h3>
