@@ -198,13 +198,23 @@ const Navbar = ({
               alt=""
             />
           </div> */}
-            <div className={styles.logoMenu}>
-              <Image
-                src={"/icons/pitek_logo.svg"}
-                width={240}
-                height={112}
-                alt=""
-              />
+            <div className={styles.formHeader}>
+              <div className={styles.logoMenuForm}>
+                <Image
+                  src={"/icons/pitek_logo.svg"}
+                  width={60}
+                  height={28}
+                  alt=""
+                />
+              </div>
+              <div className={styles.close} onClick={() => setShowForm(false)}>
+                <Image
+                  src={"/icons/close_red.svg"}
+                  width={20}
+                  height={20}
+                  alt=""
+                />
+              </div>
             </div>
             <form onSubmit={handleSubmit}>
               <h4>{"We'd love to work with you!"}</h4>
