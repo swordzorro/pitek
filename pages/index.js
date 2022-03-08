@@ -56,13 +56,14 @@ function Home() {
       }); // use callback function to set the state
     }, 3000);
 
+    return () => clearInterval(timer); // cleanup the timer
+  }, []);
+
+  useEffect(() => {
     let video = document.getElementById("banner-video");
-    document.body.style.overflow = "hidden";
     if (video.readyState === 4) {
       setIsVideoLoaded(true);
-      document.body.style.overflow = "unset";
     }
-    return () => clearInterval(timer); // cleanup the timer
   }, []);
 
   const scrollDirection = useVerticalScrollDirection();
