@@ -86,6 +86,7 @@ const Navbar = ({
         style={{ visibility: showForm && "visible" }}
       >
         <div className={styles.menuContent}>
+          {/* TODO: RED */}
           <div
             className={`${styles.menuRed} ${
               showMenu ? styles.showMenu : styles.hideMenu
@@ -140,7 +141,7 @@ const Navbar = ({
               </div>
             </div>
           </div>
-
+          {/* TODO: Blue */}
           <div
             className={`${styles.menuBlue} ${
               showMenu ? styles.showMenu : styles.hideMenu
@@ -188,7 +189,9 @@ const Navbar = ({
 
           {/* TODO: Contact Form */}
           <div
-            className={`${styles.contactForm} ${showForm && styles.showForm}`}
+            className={`${styles.contactForm} ${
+              showForm ? styles.showForm : styles.hideForm
+            }`}
           >
             {/* <div className={styles.arrowPatterns}>
             <Image

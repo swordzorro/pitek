@@ -1,6 +1,6 @@
 import Head from "next/head";
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { useInView } from "react-intersection-observer";
 import { Swiper, SwiperSlide } from "swiper/react";
 import Footer from "../components/Footer";
@@ -70,9 +70,30 @@ function Home() {
 
   // console.log(isBannerLoaded);
 
+  const lockScroll = useCallback(() => {
+    if (typeof window !== "undefined") {
+      document.body.style.overflow = "hidden";
+    }
+  }, []);
+
+  const unlockScroll = useCallback(() => {
+    if (typeof window !== "undefined") {
+      document.body.style.overflow = "unset";
+    }
+  }, []);
+
+  useEffect(() => {
+    !isBannerLoaded ? lockScroll() : unlockScroll();
+  }, [isBannerLoaded]);
+
   return (
     <>
-      <SplashScreen style={{ opacity: isBannerLoaded ? 0 : 1 }} />
+      <SplashScreen
+        style={{
+          opacity: isBannerLoaded ? 0 : 1,
+          zIndex: isBannerLoaded ? -1 : 999,
+        }}
+      />
       <div className={styles.container}>
         <Head>
           <title>Pitek- One Simple</title>
@@ -96,38 +117,18 @@ function Home() {
 
           // style={{ opacity: 1 - overlayPercent }}
         >
-          <div
-            ref={bannerRef}
-            className={styles.bannerVideo}
-            // style={{
-            //   maxHeight:
-            //     bannerVideoRef?.current?.getBoundingClientRect()?.height,
-            // }}
-          >
-            {/* <video
-              loop
-              autoPlay
-              ref={bannerVideoRef}
-              playsInline
-              muted
-              onLoadedData={() => {
-                setIsBannerLoaded(true);
-              }}
-              onLoad={() => setIsBannerLoaded(true)}
-              src="/mp4/banner_fullhd.mp4"
-              id="banner-video"
-            /> */}
-
+          <div ref={bannerRef} className={styles.bannerVideo}>
             <ReactPlayer
               loop
               controls={false}
               playsinline
               playing={true}
-              // ref={bannerVideoRef}
               width={1920}
               height={1080}
               muted
-              onReady={() => setIsBannerLoaded(true)}
+              onReady={() => {
+                setIsBannerLoaded(true);
+              }}
               url={"/mp4/banner_fullhd.mp4"}
             />
 
