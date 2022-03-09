@@ -1,6 +1,6 @@
 import Head from "next/head";
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { useInView } from "react-intersection-observer";
 import { Swiper, SwiperSlide } from "swiper/react";
 import Footer from "../components/Footer";
@@ -13,6 +13,7 @@ import withTransition from "../HOC/withTransition";
 import useVerticalScrollDirection from "../helper/useGetScrollDirection";
 import SplashScreen from "../components/SplashScreen";
 import projectGif from "../public/home-page/pitek_card_project.gif";
+import ReactPlayer from "react-player";
 
 const slideTextArr = ["unique", "modern", "creative"];
 
@@ -23,11 +24,8 @@ function Home() {
 
   const [showMenu, setShowMenu] = useState(false);
   const [showForm, setShowForm] = useState(false);
-  const [isVideoLoaded, setIsVideoLoaded] = useState(false);
+  const [isBannerLoaded, setIsBannerLoaded] = useState(false);
 
-  const projectSpriteRef = useRef();
-  const projectSpriteIpadRef = useRef();
-  const projectSpritePhoneRef = useRef();
   const logoSpriteRef = useRef();
   const bannerVideoRef = useRef();
 
@@ -59,22 +57,43 @@ function Home() {
     return () => clearInterval(timer); // cleanup the timer
   }, []);
 
-  useEffect(() => {
-    let video = document.getElementById("banner-video");
-    if (video.readyState === 4) {
-      setTimeout(() => {
-        setIsVideoLoaded(true);
-      }, 500);
-    }
-  }, []);
+  // useEffect(() => {
+  //   let video = document.getElementById("banner-video");
+  //   if (video.readyState === 4) {
+  //     setTimeout(() => {
+  //       setIsBannerLoaded(true);
+  //     }, 500);
+  //   }
+  // }, []);
 
   const scrollDirection = useVerticalScrollDirection();
 
-  // console.log(isVideoLoaded);
+  // console.log(isBannerLoaded);
+
+  const lockScroll = useCallback(() => {
+    if (typeof window !== "undefined") {
+      document.body.style.overflow = "hidden";
+    }
+  }, []);
+
+  const unlockScroll = useCallback(() => {
+    if (typeof window !== "undefined") {
+      document.body.style.overflow = "unset";
+    }
+  }, []);
+
+  useEffect(() => {
+    !isBannerLoaded ? lockScroll() : unlockScroll();
+  }, [isBannerLoaded]);
 
   return (
     <>
-      <SplashScreen style={{ opacity: isVideoLoaded ? 0 : 1 }} />
+      <SplashScreen
+        style={{
+          opacity: isBannerLoaded ? 0 : 1,
+          zIndex: isBannerLoaded ? -1 : 999,
+        }}
+      />
       <div className={styles.container}>
         <Head>
           <title>Pitek- One Simple</title>
@@ -98,29 +117,19 @@ function Home() {
 
           // style={{ opacity: 1 - overlayPercent }}
         >
-          <div
-            ref={bannerRef}
-            className={styles.bannerVideo}
-            style={{
-              maxHeight:
-                bannerVideoRef?.current?.getBoundingClientRect()?.height,
-            }}
-          >
-            <video
+          <div ref={bannerRef} className={styles.bannerVideo}>
+            <ReactPlayer
               loop
-              autoPlay
-              ref={bannerVideoRef}
-              playsInline
+              controls={false}
+              playsinline
+              playing={true}
+              width={1920}
+              height={1080}
               muted
-              // src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4"
-              onLoadedData={() => {
-                setIsVideoLoaded(true);
+              onReady={() => {
+                setIsBannerLoaded(true);
               }}
-              src="/mp4/banner_fullhd.mp4"
-              id="banner-video"
-              // onLoadedMetadata={() => setIsVideoLoaded(true)}
-              // onLoadStart={() => console.log("123")}
-              // onLoadedData={onLoadedData}
+              url={"/mp4/banner_fullhd.mp4"}
             />
 
             <div className={styles.bannerBlur}></div>

@@ -94,9 +94,8 @@
   .menuRed {
     flex-basis: 60%;
     background: $primary-red;
-    transform: translateX(-100%);
+    // transform: translateX(-100%);
     // transition: 0.8s ease-out;
-
     padding: 80px;
 
     display: flex;
@@ -171,7 +170,7 @@
     left: 0;
     right: 40%;
     bottom: 0;
-    transform: translateX(-100%);
+    //
     transition: 0.6s ease-out;
 
     padding: 80px;
@@ -216,6 +215,11 @@
 
     &.showForm {
       transform: translateX(0);
+      transition: 0.6s ease-in;
+    }
+
+    &.hideForm {
+      transform: translateX(-100%);
       transition: 0.6s ease-in;
     }
 
@@ -322,8 +326,8 @@
     flex-basis: 40%;
     background: $primary-blue;
     position: relative;
-    transition: 0.8s ease-out;
-    transform: translateX(100%);
+    // transition: 0.8s ease-out;
+    // transform: translateX(100%);
     color: white;
 
     display: flex;
