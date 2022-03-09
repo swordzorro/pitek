@@ -90,6 +90,7 @@ function Home() {
     <>
       <SplashScreen
         style={{
+          opacity: 1,
           opacity: isBannerLoaded ? 0 : 1,
           zIndex: isBannerLoaded ? -1 : 999,
         }}
@@ -129,7 +130,7 @@ function Home() {
               height={1080}
               muted
               onReady={() => {
-                setIsBannerLoaded(false);
+                setIsBannerLoaded(true);
               }}
               url={"/mp4/banner_fullhd.mp4"}
             />
