@@ -86,7 +86,11 @@ const Navbar = ({
         style={{ visibility: showForm && "visible" }}
       >
         <div className={styles.menuContent}>
-          <div className={`${styles.menuRed} ${showMenu && styles.showMenu}`}>
+          <div
+            className={`${styles.menuRed} ${
+              showMenu ? styles.showMenu : styles.hideMenu
+            }`}
+          >
             <div className={styles.arrowPatterns}>
               <Image
                 src={"/icons/arrow-pattern-white-160x160.svg"}
@@ -137,7 +141,11 @@ const Navbar = ({
             </div>
           </div>
 
-          <div className={`${styles.menuBlue} ${showMenu && styles.showMenu}`}>
+          <div
+            className={`${styles.menuBlue} ${
+              showMenu ? styles.showMenu : styles.hideMenu
+            }`}
+          >
             <div className={styles.circlePatterns}>
               <Image
                 src={"/home-page/circle-pattern-320x320.svg"}
@@ -190,13 +198,23 @@ const Navbar = ({
               alt=""
             />
           </div> */}
-            <div className={styles.logoMenu}>
-              <Image
-                src={"/icons/pitek_logo.svg"}
-                width={240}
-                height={112}
-                alt=""
-              />
+            <div className={styles.formHeader}>
+              <div className={styles.logoMenuForm}>
+                <Image
+                  src={"/icons/pitek_logo.svg"}
+                  width={60}
+                  height={28}
+                  alt=""
+                />
+              </div>
+              <div className={styles.close} onClick={() => setShowForm(false)}>
+                <Image
+                  src={"/icons/close_red.svg"}
+                  width={20}
+                  height={20}
+                  alt=""
+                />
+              </div>
             </div>
             <form onSubmit={handleSubmit}>
               <h4>{"We'd love to work with you!"}</h4>
