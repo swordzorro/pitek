@@ -14,20 +14,22 @@ import useVerticalScrollDirection from "../helper/useGetScrollDirection";
 import SplashScreen from "../components/SplashScreen";
 import projectGif from "../public/home-page/pitek_card_project.gif";
 import ReactPlayer from "react-player";
+import {
+  MouseParallaxChild,
+  MouseParallaxContainer,
+} from "react-parallax-mouse";
 
 const slideTextArr = ["unique", "modern", "creative"];
 
 function Home() {
   const [slideText, setSlideText] = useState(0);
   const [swiper, setSwiper] = useState({});
-  const [overlayPercent, setOverlayPercent] = useState(1);
 
   const [showMenu, setShowMenu] = useState(false);
   const [showForm, setShowForm] = useState(false);
   const [isBannerLoaded, setIsBannerLoaded] = useState(false);
 
   const logoSpriteRef = useRef();
-  const bannerVideoRef = useRef();
 
   const router = useRouter();
 
@@ -153,15 +155,25 @@ function Home() {
         <div ref={aboutSectionRef}>
           <Parallax
             translateY={[0, -15]}
-            onProgressChange={(progress) => setOverlayPercent(progress)}
             className={`${styles.about} `}
             style={{ background: "white" }}
           >
-            <div className={styles.visual} ref={logoSpriteRef}>
+            <MouseParallaxContainer
+              className={styles.visual}
+              containerStyles={{ overflow: "visible" }}
+              useWindowMouseEvents={true}
+            >
               {/* <div className={styles.visualLayer2}></div> */}
-              <div className={styles.visualLayer1}>
+              <MouseParallaxChild
+                factorX={0.18}
+                factorY={0.1}
+                className={styles.visualBg}
+                inverted
+                updateStyles={{
+                  transitionDuration: "2.5s",
+                }}
+              >
                 <Image
-                  // className={styles.visualLayer1}
                   src={"/visual_bg1.png"}
                   width={704}
                   height={548}
@@ -169,10 +181,18 @@ function Home() {
                   objectFit="contain"
                   layout="intrinsic"
                 ></Image>
-              </div>
-              <div className={styles.visualLayer2}>
+              </MouseParallaxChild>
+
+              <MouseParallaxChild
+                factorX={0.15}
+                factorY={0.2}
+                className={styles.visualBg}
+                inverted
+                updateStyles={{
+                  transitionDuration: "1s",
+                }}
+              >
                 <Image
-                  // className={styles.visualLayer1}
                   src={"/visual_bg2.png"}
                   width={704}
                   height={548}
@@ -180,8 +200,71 @@ function Home() {
                   objectFit="contain"
                   layout="intrinsic"
                 ></Image>
-              </div>
-              <div className={styles.visualLayer3}>
+              </MouseParallaxChild>
+
+              <MouseParallaxChild
+                factorX={0.08}
+                factorY={0.1}
+                className={styles.visualBg}
+                inverted
+                updateStyles={{
+                  transitionDuration: "1.5s",
+                }}
+              >
+                <Image
+                  src={"/visual_bg3.png"}
+                  width={704}
+                  height={548}
+                  alt=""
+                  objectFit="contain"
+                  layout="intrinsic"
+                ></Image>
+              </MouseParallaxChild>
+
+              <MouseParallaxChild
+                factorX={0.15}
+                factorY={0.1}
+                className={styles.visualBg}
+                inverted
+                updateStyles={{
+                  transitionDuration: "2s",
+                }}
+              >
+                <Image
+                  src={"/visual_bg4.png"}
+                  width={704}
+                  height={548}
+                  alt=""
+                  objectFit="contain"
+                  layout="intrinsic"
+                ></Image>
+              </MouseParallaxChild>
+
+              <MouseParallaxChild
+                factorX={0.05}
+                factorY={0.2}
+                className={styles.visualBg}
+                inverted
+                updateStyles={{
+                  transitionDuration: "1.8s",
+                }}
+              >
+                <Image
+                  src={"/visual_bg5.png"}
+                  width={704}
+                  height={548}
+                  alt=""
+                  objectFit="contain"
+                  layout="intrinsic"
+                ></Image>
+              </MouseParallaxChild>
+
+              <MouseParallaxChild
+                className={styles.visualOS}
+                factorX={0.05}
+                factorY={0.05}
+                inverted
+              >
                 <Image
                   // className={styles.visualLayer1}
                   src={"/visual_one_simple.png"}
@@ -191,10 +274,10 @@ function Home() {
                   objectFit="contain"
                   layout="intrinsic"
                 ></Image>
-              </div>
+              </MouseParallaxChild>
 
               <div className={styles.logoSprite} id="logo"></div>
-            </div>
+            </MouseParallaxContainer>
             {/* </Parallax>*/}
             <Parallax
               translateY={[20, -20]}
@@ -275,6 +358,7 @@ function Home() {
                         width={120}
                         height={120}
                         alt=""
+                        quality={100}
                       />
                     </div>
                     <div className={styles.cardContent}>
@@ -300,6 +384,7 @@ function Home() {
                         width={120}
                         height={120}
                         alt=""
+                        quality={100}
                       />
                     </div>
                     <div className={styles.cardContent}>
@@ -329,6 +414,7 @@ function Home() {
                         width={120}
                         height={120}
                         alt=""
+                        quality={100}
                       />
                     </div>
                     <div className={styles.cardContent}>
