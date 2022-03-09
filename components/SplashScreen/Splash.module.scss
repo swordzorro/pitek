@@ -1,3 +1,4 @@
+@import "../../styles/sass/animation";
 .splashScreen {
   position: fixed;
   top: 0;
@@ -11,8 +12,22 @@
 
   overflow: hidden;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
 
-  transition: 2s all ease;
+  transition: 0.5s all ease;
+  .logo {
+    @media (max-width: 450px) {
+      max-width: 180px !important;
+    }
+  }
+
+  .loadingBar {
+    height: 2px;
+    background-color: #ff3355;
+    align-self: flex-start;
+    animation: loading 1s linear infinite;
+    margin-top: 28px;
+  }
 }

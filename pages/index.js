@@ -101,14 +101,16 @@ function Home() {
           <link rel="icon" href="/favicon.svg" />
         </Head>
         {/* Page */}
-        <Navbar
-          showNav={scrollY > 300 && scrollDirection === "up" ? true : false}
-          showForm={showForm}
-          setShowForm={setShowForm}
-          showMenu={showMenu}
-          setShowMenu={setShowMenu}
-          scrollY={scrollY}
-        />
+        {!isBannerLoaded && (
+          <Navbar
+            showNav={scrollY > 300 && scrollDirection === "up" ? true : false}
+            showForm={showForm}
+            setShowForm={setShowForm}
+            showMenu={showMenu}
+            setShowMenu={setShowMenu}
+            scrollY={scrollY}
+          />
+        )}
         <Parallax
           // speed={-10}
           translateY={[-15, 15]}
