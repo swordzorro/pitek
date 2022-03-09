@@ -2,7 +2,7 @@ import Image from "next/image";
 import React from "react";
 import styles from "./Footer.module.scss";
 
-const Footer = () => {
+const Footer = ({ setShowForm, setShowMenu }) => {
   return (
     <footer className={styles.footerWrapper}>
       <div className={styles.logo}>
@@ -17,7 +17,7 @@ const Footer = () => {
         <div className={styles.address}>
           <p>PITEK JSC ©2022</p>
           <p>
-            633 - 635 Dien Bien Phu, Ward 25, Binh Thanh Distric, Ho Chi Minh.
+            633 - 635 Dien Bien Phu, Ward 25, Binh Thanh District, Ho Chi Minh.
           </p>
         </div>
         <div className={styles.contact}>
@@ -26,9 +26,15 @@ const Footer = () => {
         </div>
         <div className={styles.sendMessage}>
           <p>SAY HELLO</p>
-          <a className="link-btn-white" href="#">
+          <button
+            className="btn btn-white"
+            onClick={() => {
+              // setShowMenu(true);
+              setShowForm(true);
+            }}
+          >
             SEND A MESSAGE
-          </a>
+          </button>
         </div>
       </div>
     </footer>

@@ -12,39 +12,32 @@
 @import "./sass/animation";
 @import "./sass/variables";
 
-// $--projectSpriteWidth: 440px;
-// $--projectSpriteHeight: 640px;
-
 .swiper {
   width: 100%;
   height: 100%;
 }
 
-.swiper-wrapper {
-  transition-timing-function: ease-out;
+@media screen and (min-width: 768px) {
+  .swiper-container {
+    width: 768px;
+  }
 }
 
-.swiper-slide {
-  font-size: 18px;
-  /* Center slide text vertically */
+@media screen and (min-width: 768px) {
+  .swiper-container {
+    width: 768px;
+  }
 }
-
-// .swiper-slide img {
-//   display: block;
-//   width: 100%;
-//   height: 100%;
-//   object-fit: cover;
-// }
 
 .swiper-slide {
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.5s linear, visibility 0.5s linear;
-  -webkit-transform: translate3d(0, 0, 0);
-  // @media (max-width: 1025px) {
-  //   opacity: 1;
-  //   visibility: visible;
-  // }
+
+  @media (max-width: 1025px) {
+    opacity: 1;
+    visibility: visible;
+  }
 }
 
 .swiper-slide-active {
@@ -55,6 +48,7 @@
   opacity: 1;
   visibility: visible;
 }
+
 .swiper-slide-active + .swiper-slide + .swiper-slide {
   opacity: 1;
   visibility: visible;
@@ -63,48 +57,122 @@
 .swiper-slide.swiper-slide-prev {
   opacity: 0;
   transition: opacity 0.5s linear, visibility 0.5s linear;
-  @media (max-width: 769px) {
-    opacity: 1;
-    visibility: visible;
-  }
-  @media (max-width: 625px) {
-    opacity: 0;
-    visibility: hidden;
-  }
-}
-.swiper-slide.swiper-slide-next {
-  opacity: 1;
-  transition: opacity 0.5s linear, visibility 0.5s linear;
-  visibility: visible;
 }
 
-.swiper-slide-active + .swiper-slide + .swiper-slide + .swiper-slide {
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.5s linear, visibility 0.5s linear;
-}
-
-.swiper-slide-active .content,
-.swiper-slide-duplicate-active {
-  visibility: visible;
-  opacity: 1;
-}
-
-.link-btn-white {
+//
+.btn {
   all: unset;
   text-decoration: none;
   padding: 12px 24px;
   text-transform: uppercase;
-  background-color: white;
-  color: $primary-red;
+
   cursor: pointer;
+  font-weight: 700;
+  line-height: 120%;
+
+  letter-spacing: 0.04em;
+  display: inline-block;
+
+  &.btn-white {
+    background-color: white;
+    color: $primary-red;
+  }
+  &.btn-red {
+    background-color: $primary-red;
+    color: white;
+  }
+  &.btn-gray {
+    background-color: white;
+    color: #808080;
+  }
 }
-.link-btn-red {
-  all: unset;
-  text-decoration: none;
-  padding: 12px 24px;
-  text-transform: uppercase;
-  background-color: $primary-red;
-  color: white;
-  cursor: pointer;
+// .btn-red {
+//   all: unset;
+//   text-decoration: none;
+//   padding: 12px 24px;
+//   text-transform: uppercase;
+
+//   cursor: pointer;
+//   font-weight: 700;
+//   line-height: 120%;
+
+//   letter-spacing: 0.04em;
+//   display: inline-block;
+// }
+// .btn-gray {
+//   all: unset;
+//   text-decoration: none;
+//   padding: 12px 24px;
+//   text-transform: uppercase;
+
+//   cursor: pointer;
+//   font-weight: 700;
+//   line-height: 120%;
+
+//   letter-spacing: 0.04em;
+//   display: inline-block;
+// }
+
+input[type="text"] {
+  border: none;
+  font-weight: 300;
+  font-size: 18px;
+  line-height: 160%;
+
+  letter-spacing: 0.02em;
+
+  color: $primary-blue;
+
+  border-bottom: 1px solid $primary-blue;
+  outline: none;
+  padding: 0;
+
+  &::placeholder {
+    color: #cccccccc;
+  }
+}
+
+.font-12 {
+  font-weight: 400 !important;
+  font-size: 12px;
+  line-height: 160%;
+  letter-spacing: 0.04em;
+  color: #333333;
+}
+.sub-title {
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 120%;
+  letter-spacing: 0.04em;
+  @media (max-width: 1025px) {
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 120%;
+    letter-spacing: 0.04em;
+  }
+}
+
+//TODO: Page transition
+
+.slide-red {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100%;
+  background: $primary-red;
+  // transform-origin: right;
+  z-index: 999;
+}
+
+.slide-white {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100%;
+  background: white;
+  transform-origin: right;
+  z-index: 999;
+  animation-delay: 1s;
 }

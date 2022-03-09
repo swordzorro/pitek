@@ -1,0 +1,26 @@
+@import "../../styles/sass/animation";
+
+.projectSpriteSheet {
+  position: relative;
+  width: 100%;
+  max-width: 440px;
+  max-height: 640px;
+
+  &:before {
+    content: "";
+    display: block;
+    padding-top: 145.4545%;
+  }
+
+  .box {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url("/projects/project_spritesheet.png") no-repeat 0 0%;
+    animation: moveX 0.5s steps(10) infinite, moveY 3s steps(6) infinite;
+    // actual bg width / display width => *100%
+    background-size: 1000% 600%;
+  }
+}
