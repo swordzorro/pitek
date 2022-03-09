@@ -101,7 +101,7 @@ function Home() {
           <link rel="icon" href="/favicon.svg" />
         </Head>
         {/* Page */}
-        {!isBannerLoaded && (
+        {isBannerLoaded && (
           <Navbar
             showNav={scrollY > 300 && scrollDirection === "up" ? true : false}
             showForm={showForm}

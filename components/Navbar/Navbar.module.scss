@@ -94,8 +94,7 @@
   .menuRed {
     flex-basis: 60%;
     background: $primary-red;
-    // transform: translateX(-100%);
-    // transition: 0.8s ease-out;
+    transform: translateX(-100%);
     padding: 80px;
 
     display: flex;
@@ -165,20 +164,28 @@
   .contactForm {
     background: white;
     position: absolute;
+    transform: translateX(-100%);
+    // transition: 0.6s ease-out;
 
     top: 0;
     left: 0;
     right: 40%;
     bottom: 0;
-    //
-    transition: 0.6s ease-out;
-
     padding: 80px;
 
     display: flex;
     flex-direction: column;
 
     color: $primary-blue;
+    &.showForm {
+      transform: translateX(0);
+      transition: 0.6s ease-in;
+    }
+
+    &.hideForm {
+      transform: translateX(-100%);
+      transition: 0.6s ease-in;
+    }
     @media (max-width: 1025px) {
       right: 0;
       // justify-content: center;
@@ -211,16 +218,6 @@
       @media (max-width: 1025px) {
         display: flex;
       }
-    }
-
-    &.showForm {
-      transform: translateX(0);
-      transition: 0.6s ease-in;
-    }
-
-    &.hideForm {
-      transform: translateX(-100%);
-      transition: 0.6s ease-in;
     }
 
     form {
@@ -327,7 +324,7 @@
     background: $primary-blue;
     position: relative;
     // transition: 0.8s ease-out;
-    // transform: translateX(100%);
+    transform: translateX(100%);
     color: white;
 
     display: flex;
