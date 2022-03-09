@@ -129,7 +129,7 @@ function Home() {
               height={1080}
               muted
               onReady={() => {
-                setIsBannerLoaded(true);
+                setIsBannerLoaded(false);
               }}
               url={"/mp4/banner_fullhd.mp4"}
             />
