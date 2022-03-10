@@ -274,3 +274,13 @@
 @include animation-mixin(slideUp80, 0, 0, 80px, 0);
 @include animation-mixin(slideUp120, 0, 0, 120px, 0);
 @include animation-mixin(slideUp160, 0, 0, 160px, 0);
+// @include animation-mixin(disappear, 0, 0, 0, 0);
+
+@keyframes disappear {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}

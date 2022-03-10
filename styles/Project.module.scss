@@ -1,12 +1,12 @@
 @import "./sass/variables";
+@import "./sass/animation";
 .projectPage {
   max-height: 100vh;
   height: 100vh;
   display: flex;
   flex-direction: column;
   position: relative;
-  @media (max-width: 1025px) {
-  }
+
   .projectContent {
     display: flex;
     flex: 1;
@@ -37,6 +37,9 @@
       display: flex;
       flex-direction: column;
       gap: 64px;
+      @media (max-width: 1440px) {
+        padding: 80px 80px;
+      }
       @media (max-width: 1025px) {
         overflow-y: unset;
         flex: unset;
@@ -46,7 +49,9 @@
         }
       }
       p {
-        font-weight: 300;
+        font-weight: 200;
+        max-width: 640px;
+        font-size: 16px;
       }
       .title {
         display: flex;
@@ -61,16 +66,21 @@
           gap: 0;
           justify-content: space-between;
         }
+        @media (max-width: 650px) {
+          flex-direction: column;
+          gap: 16px;
+        }
         .col {
           display: flex;
           flex-direction: column;
-          gap: 16px;
+          // gap: 16px;
           p:nth-child(1) {
             font-weight: 500;
             font-size: 24px;
             line-height: 120%;
             letter-spacing: 0.04em;
             color: #cccccc;
+            margin-bottom: 8px;
           }
         }
       }
@@ -84,8 +94,19 @@
         }
       }
       .projectImage {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+        p {
+          // max-width: 640px;
+          align-self: center;
+          // text-align: justify;
+        }
         @media (max-width: 450px) {
           margin: 0 -30px;
+          p {
+            padding: 0 30px;
+          }
         }
       }
 
@@ -117,5 +138,28 @@
         }
       }
     }
+  }
+}
+
+.snackBar {
+  position: fixed;
+  bottom: 32px;
+  left: 50%;
+  z-index: 10;
+  font-weight: 300;
+  font-size: 14px;
+  padding: 8px 16px;
+  background-color: $primary-red;
+  color: white;
+  opacity: 0;
+
+  &.show {
+    animation: slideUp80 0.2s ease 1;
+    animation-fill-mode: both;
+    transform: translateX(-50%);
+  }
+  &.hide {
+    animation: disappear 0.5s ease 1;
+    animation-fill-mode: both;
   }
 }
