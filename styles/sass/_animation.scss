@@ -1,3 +1,26 @@
+@mixin animation-mixin($name, $fromX: 0, $toX: 0, $fromY: 0, $toY: 0) {
+  @keyframes #{$name} {
+    0% {
+      -webkit-transform: translate($fromX, $fromY);
+      -moz-transform: translate($fromX, $fromY);
+      -ms-transform: translate($fromX, $fromY);
+      -o-transform: translate($fromX, $fromY);
+      transform: translate($fromX, $fromY);
+
+      opacity: 0;
+    }
+    100% {
+      -webkit-transform: translate($fromX, $fromY);
+      -moz-transform: translate($fromX, $fromY);
+      -ms-transform: translate($fromX, $fromY);
+      -o-transform: translate($fromX, $fromY);
+      transform: translate($toX, $toY);
+
+      opacity: 1;
+    }
+  }
+}
+
 @keyframes slide-down {
   0% {
     height: 0;
@@ -183,6 +206,23 @@
   }
 }
 // =====
+@keyframes slide-down {
+  0% {
+    height: 0;
+    top: 32px;
+  }
+  50% {
+    height: 100%;
+  }
+  70% {
+    top: 32px;
+  }
+  100% {
+    top: 160px;
+  }
+}
+
+// ===
 
 @keyframes loading {
   0% {
@@ -190,15 +230,27 @@
   }
   50% {
     width: 100%;
+    -webkit-transform: translateX(0);
+    -moz-transform: translateX(0);
+    -ms-transform: translateX(0);
+    -o-transform: translateX(0);
     transform: translateX(0);
   }
   90% {
+    -webkit-transform: translateX(100%);
+    -moz-transform: translateX(100%);
+    -ms-transform: translateX(100%);
+    -o-transform: translateX(100%);
     transform: translateX(100%);
     width: 100%;
   }
 
   100% {
-    transform: translateX(100%);
+    -webkit-transform: translateX(0);
+    -moz-transform: translateX(0);
+    -ms-transform: translateX(0);
+    -o-transform: translateX(0);
+    transform: translateX(0);
     width: 100%;
   }
 }
@@ -215,3 +267,10 @@
     transform: translate(0px, 0px);
   }
 }
+//
+@include animation-mixin(slideUp10, 0, 0, 10px, 0);
+@include animation-mixin(slideUp40, 0, 0, 40px, 0);
+@include animation-mixin(slideUp60, 0, 0, 60px, 0);
+@include animation-mixin(slideUp80, 0, 0, 80px, 0);
+@include animation-mixin(slideUp120, 0, 0, 120px, 0);
+@include animation-mixin(slideUp160, 0, 0, 160px, 0);

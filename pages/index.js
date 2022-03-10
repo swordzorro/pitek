@@ -29,8 +29,6 @@ function Home() {
   const [showForm, setShowForm] = useState(false);
   const [isBannerLoaded, setIsBannerLoaded] = useState(false);
 
-  const logoSpriteRef = useRef();
-
   const router = useRouter();
 
   const [bannerRef, bannerInview] = useInView({
@@ -43,6 +41,19 @@ function Home() {
   const [aboutSectionRef, aboutSectionInview] = useInView({
     threshold: [0.6, 0.1],
   });
+  const [serviceCard1Ref, serviceCard1Inview] = useInView({
+    threshold: 0.5,
+    triggerOnce: true,
+  });
+  const [serviceCard2Ref, serviceCard2Inview] = useInView({
+    threshold: 0.5,
+    triggerOnce: true,
+  });
+  const [serviceCard3Ref, serviceCard3Inview] = useInView({
+    threshold: 0.5,
+    triggerOnce: true,
+  });
+
   const { scrollY } = useWindowScrollPositions();
 
   useEffect(() => {
@@ -147,9 +158,9 @@ function Home() {
               <div className={styles.line}></div>
             </div>
           </div>
-          <div className={styles.bannerText}>
+          <h3 className={styles.bannerText}>
             Digital Product <br /> Development
-          </div>
+          </h3>
         </Parallax>
         {/* TODO: section about */}
         <div ref={aboutSectionRef}>
@@ -203,25 +214,6 @@ function Home() {
               </MouseParallaxChild>
 
               <MouseParallaxChild
-                factorX={0.08}
-                factorY={0.1}
-                className={styles.visualBg}
-                inverted
-                updateStyles={{
-                  transitionDuration: "1.5s",
-                }}
-              >
-                <Image
-                  src={"/visual_bg3.png"}
-                  width={704}
-                  height={548}
-                  alt=""
-                  objectFit="contain"
-                  layout="intrinsic"
-                ></Image>
-              </MouseParallaxChild>
-
-              <MouseParallaxChild
                 factorX={0.15}
                 factorY={0.1}
                 className={styles.visualBg}
@@ -251,6 +243,26 @@ function Home() {
               >
                 <Image
                   src={"/visual_bg5.png"}
+                  width={704}
+                  height={548}
+                  alt=""
+                  objectFit="contain"
+                  layout="intrinsic"
+                ></Image>
+              </MouseParallaxChild>
+
+              <MouseParallaxChild
+                factorX={0.08}
+                factorY={0.1}
+                className={styles.visualBg}
+                inverted
+                updateStyles={{
+                  transitionDuration: "1.5s",
+                  top: "20px",
+                }}
+              >
+                <Image
+                  src={"/visual_bg3.png"}
                   width={704}
                   height={548}
                   alt=""
@@ -322,7 +334,7 @@ function Home() {
           {/* TODO: service */}
           <Parallax translateY={[0, -15]}>
             <div className={styles.service}>
-              <Parallax translateY={[-20, 20]} className={styles.circlePattern}>
+              <Parallax translateY={[-20, 80]} className={styles.circlePattern}>
                 <Image
                   src="/home-page/circle-pattern-320x320.svg"
                   width={320}
@@ -338,7 +350,7 @@ function Home() {
                   alt=""
                 />
               </Parallax>
-              <Parallax translateY={[-20, 20]} className={styles.plusPattern}>
+              <Parallax translateY={[0, 120]} className={styles.plusPattern}>
                 <Image
                   src="/home-page/plus-pattern-320x160.svg"
                   width={320}
@@ -351,7 +363,12 @@ function Home() {
                   <h1>Our service</h1>
                 </Parallax>
                 <div className={styles.cards}>
-                  <div className={styles.card}>
+                  <div
+                    className={`${styles.card} ${
+                      serviceCard1Inview && styles.cardAppear
+                    }`}
+                    ref={serviceCard1Ref}
+                  >
                     <div className={styles.icon}>
                       <Image
                         src={"/home-page/glassmorphims-dev.png"}
@@ -360,7 +377,19 @@ function Home() {
                         alt=""
                         quality={100}
                       />
+                      {/* <div className={styles.background}>
+                        <Image
+                          src={"/home-page/glassmorphims-dev2.png"}
+                          width={120}
+                          height={120}
+                          alt=""
+                          quality={100}
+                        />
+                      </div> */}
                     </div>
+                    {/* <div className={styles.icon}>
+                   
+                    </div> */}
                     <div className={styles.cardContent}>
                       <h5>
                         Software <br /> development
@@ -377,7 +406,13 @@ function Home() {
                       </div>
                     </div>
                   </div>
-                  <div className={styles.card}>
+
+                  <div
+                    className={`${styles.card} ${
+                      serviceCard2Inview && styles.cardAppear
+                    }`}
+                    ref={serviceCard2Ref}
+                  >
                     <div className={styles.icon}>
                       <Image
                         src={"/home-page/glassmorphims-iot.png"}
@@ -401,13 +436,15 @@ function Home() {
                         ONE SIMPLE — We resolve the problems with simple
                         solution.
                       </p>
-                      {/* <p>Product Development</p>
-                <p>CMS Integration</p>
-                <p>3rd Party Integration</p>
-                <p>API Design & Implementation</p> */}
                     </div>
                   </div>
-                  <div className={styles.card}>
+
+                  <div
+                    className={`${styles.card} ${
+                      serviceCard3Inview && styles.cardAppear
+                    }`}
+                    ref={serviceCard3Ref}
+                  >
                     <div className={styles.icon}>
                       <Image
                         src={"/home-page/glassmorphims-solution.png"}

@@ -29,8 +29,11 @@
     height: 2px;
     background-color: #ff3355;
     align-self: flex-start;
-    animation: loading 1s linear infinite;
     -webkit-animation: loading 1s linear infinite;
+    -ms-animation: loading 1s linear infinite;
+    -moz-animation: loading 1s linear infinite;
+    -o-animation: loading 1s linear infinite;
+    animation: loading 1s linear infinite;
     margin-top: 28px;
   }
 }
