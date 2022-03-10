@@ -22,7 +22,8 @@ const Footer = ({ setShowForm, setShowMenu }) => {
         </div>
         <div className={styles.contact}>
           <p>GET IN TOUCH</p>
-          <p>+84 86 900 22 44 info@pitek.one</p>
+          <p>+84 86 900 22 44</p>
+          <p> info@pitek.one</p>
         </div>
         <div className={styles.sendMessage}>
           <p>SAY HELLO</p>
@@ -35,6 +36,22 @@ const Footer = ({ setShowForm, setShowMenu }) => {
           >
             SEND A MESSAGE
           </button>
+        </div>
+        <div className={styles.social}>
+          <a
+            href="https://www.facebook.com/pitek.one/"
+            target={"_blank"}
+            rel="noreferrer"
+          >
+            <Image src="/icons/fb.svg" width={24} height={24} alt="" />
+          </a>
+          <a
+            href="https://www.linkedin.com/company/pitek/"
+            target={"_blank"}
+            rel="noreferrer"
+          >
+            <Image src="/icons/linkedin.svg" width={24} height={24} alt="" />
+          </a>
         </div>
       </div>
     </footer>

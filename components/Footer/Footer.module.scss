@@ -15,13 +15,11 @@
     flex-direction: column;
     align-items: flex-start;
     gap: 38px;
-    @media (max-width: 429px) {
-      padding: 40px;
-    }
+    padding: 40px;
   }
 
   .logo {
-    @media (max-width: 429px) {
+    @media (max-width: 450px) {
       max-width: 90px;
     }
   }
@@ -30,7 +28,9 @@
     gap: 100px;
     flex-wrap: wrap;
     @media (max-width: 1025px) {
-      gap: 60px;
+      gap: 40px;
+      width: 100%;
+      justify-content: space-between;
       @media (max-width: 629px) {
         flex-direction: column;
         gap: 16px;
@@ -42,29 +42,41 @@
       gap: 4px;
 
       > p {
-        font-weight: 400;
+        font-weight: 300;
         font-size: 16px;
         line-height: 160%;
         letter-spacing: 0.02em;
 
         &:first-child {
-          font-weight: 700;
+          font-weight: 600;
           font-size: 18px;
         }
       }
     }
     .address {
-      max-width: 270px;
-      min-width: 230px;
+      max-width: 200px;
+      min-width: 200px;
     }
     .contact {
-      max-width: 145px;
-      min-width: 145px;
+      max-width: 130px;
+      min-width: 130px;
+      white-space: nowrap;
     }
     .sendMessage {
-      max-width: 202px;
-      flex: 1;
-      white-space: nowrap;
+      width: fit-content;
+      button {
+        white-space: nowrap;
+      }
+    }
+    .social {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      @media (max-width: 450px) {
+        position: absolute;
+        bottom: 44px;
+        right: 40px;
+      }
     }
   }
 }

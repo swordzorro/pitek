@@ -42,15 +42,15 @@ function Home() {
     threshold: [0.6, 0.1],
   });
   const [serviceCard1Ref, serviceCard1Inview] = useInView({
-    threshold: 0.5,
+    threshold: 0.3,
     triggerOnce: true,
   });
   const [serviceCard2Ref, serviceCard2Inview] = useInView({
-    threshold: 0.5,
+    threshold: 0.3,
     triggerOnce: true,
   });
   const [serviceCard3Ref, serviceCard3Inview] = useInView({
-    threshold: 0.5,
+    threshold: 0.3,
     triggerOnce: true,
   });
 
