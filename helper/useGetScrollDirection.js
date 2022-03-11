@@ -12,7 +12,6 @@ export default function useVerticalScrollDirection() {
     window.onscroll = throttle(() => {
       // This value keeps the latest scrollY position
       const { scrollY } = window;
-
       // Checks if previous scrollY is less than latest scrollY
       // If true, we are scrolling downwards, else scrollig upwards
       const direction = prevScrollY < scrollY ? "down" : "up";

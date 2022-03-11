@@ -2,7 +2,7 @@ import Image from "next/image";
 import React from "react";
 import styles from "./Footer.module.scss";
 
-const Footer = ({ setShowForm, setShowMenu }) => {
+const Footer = ({ handleShowForm }) => {
   return (
     <footer className={styles.footerWrapper}>
       <div className={styles.logo}>
@@ -27,13 +27,7 @@ const Footer = ({ setShowForm, setShowMenu }) => {
         </div>
         <div className={styles.sendMessage}>
           <p>SAY HELLO</p>
-          <button
-            className="btn btn-white"
-            onClick={() => {
-              // setShowMenu(true);
-              setShowForm(true);
-            }}
-          >
+          <button className="btn btn-white" onClick={handleShowForm}>
             SEND A MESSAGE
           </button>
         </div>

@@ -1,87 +1,49 @@
 import Head from "next/head";
 import Image from "next/image";
-import { useCallback, useEffect, useRef, useState } from "react";
-import { useInView } from "react-intersection-observer";
-import { Swiper, SwiperSlide } from "swiper/react";
-import Footer from "../components/Footer";
-import styles from "../styles/Home.module.scss";
-import { useWindowScrollPositions } from "../utils/useWindowScrollPositions";
-import { Parallax } from "react-scroll-parallax";
-import Navbar from "../components/Navbar";
 import { useRouter } from "next/router";
-import withTransition from "../HOC/withTransition";
-import useVerticalScrollDirection from "../helper/useGetScrollDirection";
-import SplashScreen from "../components/SplashScreen";
-import projectGif from "../public/home-page/pitek_card_project.gif";
-import ReactPlayer from "react-player";
+import { useCallback, useEffect, useState } from "react";
+import { useInView } from "react-intersection-observer";
 import {
   MouseParallaxChild,
   MouseParallaxContainer,
 } from "react-parallax-mouse";
-
-const slideTextArr = ["unique", "modern", "creative"];
+import ReactPlayer from "react-player";
+import { Parallax } from "react-scroll-parallax";
+import { Swiper, SwiperSlide } from "swiper/react";
+import Footer from "../components/Footer";
+import Navbar from "../components/Navbar";
+import SplashScreen from "../components/SplashScreen";
+import TextSlider from "../components/TextSlider";
+import useVerticalScrollDirection from "../helper/useGetScrollDirection";
+import useWindowSize from "../helper/useWindowSize";
+import projectGif from "../public/home-page/pitek_card_project.gif";
+import styles from "../styles/Home.module.scss";
+import { useWindowScrollPositions } from "../utils/useWindowScrollPositions";
 
 function Home() {
-  const [slideText, setSlideText] = useState(0);
   const [swiper, setSwiper] = useState({});
-
   const [showMenu, setShowMenu] = useState(false);
+  const [showRedMenu, setShowRedMenu] = useState(false);
   const [showForm, setShowForm] = useState(false);
   const [isBannerLoaded, setIsBannerLoaded] = useState(false);
 
-  const router = useRouter();
-
-  const [bannerRef, bannerInview] = useInView({
-    threshold: 0.2,
-  });
-  const [projectSectionRef, projectSectionInview] = useInView({
-    threshold: 1,
-    rootMargin: "350px",
-  });
-  const [aboutSectionRef, aboutSectionInview] = useInView({
-    threshold: [0.6, 0.1],
-  });
   const [serviceCard1Ref, serviceCard1Inview] = useInView({
-    threshold: 0.3,
+    threshold: 0.5,
     triggerOnce: true,
   });
   const [serviceCard2Ref, serviceCard2Inview] = useInView({
-    threshold: 0.3,
+    threshold: 0.5,
     triggerOnce: true,
   });
   const [serviceCard3Ref, serviceCard3Inview] = useInView({
-    threshold: 0.3,
+    threshold: 0.5,
     triggerOnce: true,
   });
 
+  const router = useRouter();
   const { scrollY } = useWindowScrollPositions();
-
-  useEffect(() => {
-    let timer = setInterval(() => {
-      setSlideText((prevSlideText) => {
-        const updatedCounter = prevSlideText + 1;
-        if (updatedCounter === slideTextArr.length) {
-          return 0;
-        }
-        return updatedCounter;
-      }); // use callback function to set the state
-    }, 3000);
-
-    return () => clearInterval(timer); // cleanup the timer
-  }, []);
-
-  // useEffect(() => {
-  //   let video = document.getElementById("banner-video");
-  //   if (video.readyState === 4) {
-  //     setTimeout(() => {
-  //       setIsBannerLoaded(true);
-  //     }, 500);
-  //   }
-  // }, []);
-
   const scrollDirection = useVerticalScrollDirection();
-
-  // console.log(isBannerLoaded);
+  const windowSize = useWindowSize();
 
   const lockScroll = useCallback(() => {
     if (typeof window !== "undefined") {
@@ -98,6 +60,15 @@ function Home() {
   useEffect(() => {
     !isBannerLoaded ? lockScroll() : unlockScroll();
   }, [isBannerLoaded]);
+
+  const handleShowForm = () => {
+    if (windowSize.width < 1025) {
+      setShowForm(true);
+    } else {
+      setShowMenu(true);
+      setShowForm(true);
+    }
+  };
 
   return (
     <>
@@ -122,18 +93,17 @@ function Home() {
             setShowForm={setShowForm}
             showMenu={showMenu}
             setShowMenu={setShowMenu}
+            showRedMenu={showRedMenu}
+            setShowRedMenu={setShowRedMenu}
             scrollY={scrollY}
           />
         )}
         <Parallax
-          // speed={-10}
-          translateY={[-15, 15]}
+          translate={[-15, 15]}
           className={styles.bannerContainer}
           startScroll={0}
-
-          // style={{ opacity: 1 - overlayPercent }}
         >
-          <div ref={bannerRef} className={styles.bannerVideo}>
+          <div className={styles.bannerVideo}>
             <ReactPlayer
               loop
               controls={false}
@@ -163,7 +133,7 @@ function Home() {
           </h3>
         </Parallax>
         {/* TODO: section about */}
-        <div ref={aboutSectionRef}>
+        <div>
           <Parallax
             translateY={[0, -15]}
             className={`${styles.about} `}
@@ -297,24 +267,7 @@ function Home() {
               className={styles.aboutContent}
             >
               <h2>
-                We create{" "}
-                <div className={`${styles.textSlider}`}>
-                  {slideTextArr?.map((item, index) => (
-                    <span
-                      key={index}
-                      className={`${styles.text} ${
-                        slideText === index ? styles.show : styles.notShow
-                      } 
-                  `}
-                      style={{
-                        opacity: slideText === index ? 1 : 0,
-                        // transition: "1s all ease",
-                      }}
-                    >
-                      {item}
-                    </span>
-                  ))}
-                </div>
+                We create <TextSlider styles={styles} />
                 <br />
                 digital products & technology experiences.
               </h2>
@@ -472,18 +425,9 @@ function Home() {
           </Parallax>
         </div>
 
-        <section className={`${styles.project}`} ref={projectSectionRef}>
+        <section className={`${styles.project}`}>
           <div className={styles.projectBg}>
-            <video
-              loop
-              muted
-              autoPlay
-              playsInline
-              onLoadedData={() => {
-                console.log("Im loaded");
-              }}
-              onLoad={() => alert("loaded")}
-            >
+            <video loop muted autoPlay playsInline>
               <source src="/mp4/background.mp4" />
             </video>
           </div>
@@ -492,14 +436,13 @@ function Home() {
             <div className={`${styles.projectContent}`}>
               <h1>PROJECTS</h1>
               <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit ut
-                aliquam, purus sit amet luctus venenatis.
+                Recently, Pitek Technology JSC has provided to the market lots
+                of products including Pigroup ecosystem. Besides, we are
+                expanding our international market by outsourcing to potential
+                markets such as Laos, Cambodia, Myanmar, Indonesia, Nepal,
+                Singapore etc.
               </p>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit ut
-                aliquam, purus sit amet luctus venenatis.
-              </p>
-              <div className={styles.link}>
+              <div className={styles.link} onClick={handleShowForm}>
                 <a>brief us</a>
                 <div className={styles.line}></div>
               </div>
@@ -788,7 +731,13 @@ function Home() {
             </Swiper>
           </div>
         </section>
-        <Footer setShowForm={setShowForm} setShowMenu={setShowMenu} />
+        <Footer
+          setShowForm={setShowForm}
+          setShowMenu={setShowMenu}
+          setShowRedMenu={setShowRedMenu}
+          windowSize={windowSize?.width}
+          handleShowForm={handleShowForm}
+        />
       </div>
     </>
   );

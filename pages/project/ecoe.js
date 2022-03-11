@@ -7,11 +7,15 @@ import { useRef } from "react";
 import withTransition from "../../HOC/withTransition";
 import Head from "next/head";
 import { useRouter } from "next/router";
+import useWindowSize from "../../helper/useWindowSize";
 
 const Ecoe = () => {
   const [showMenu, setShowMenu] = useState(false);
   const [showForm, setShowForm] = useState(false);
+  const [showRedMenu, setShowRedMenu] = useState(false);
   const [showSnackBar, setShowSnackBar] = useState(false);
+
+  const windowSize = useWindowSize();
 
   const topRef = useRef();
 
@@ -50,6 +54,15 @@ const Ecoe = () => {
     navigator?.clipboard?.writeText(ogUrl).then(() => setShowSnackBar(true));
   };
 
+  const handleShowForm = () => {
+    if (windowSize.width < 1025) {
+      setShowForm(true);
+    } else {
+      setShowMenu(true);
+      setShowForm(true);
+    }
+  };
+
   return (
     <>
       <Head>
@@ -70,6 +83,8 @@ const Ecoe = () => {
           setShowForm={setShowForm}
           showMenu={showMenu}
           setShowMenu={setShowMenu}
+          showRedMenu={showRedMenu}
+          setShowRedMenu={setShowRedMenu}
         />
         <div className={styles.projectContent}>
           <div className={styles.banner}></div>
@@ -189,7 +204,9 @@ const Ecoe = () => {
               </div>
               <div className={styles.footerItem2}>
                 <div className="sub-title">Do you like this project ?</div>
-                <button className="btn btn-red">BRIEF US</button>
+                <button className="btn btn-red" onClick={handleShowForm}>
+                  BRIEF US
+                </button>
               </div>
             </div>
           </div>

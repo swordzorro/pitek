@@ -8,13 +8,16 @@ import { useRouter } from "next/router";
 const Navbar = ({
   showNav = true,
   scrollY = 0,
+  showRedMenu = false,
+  setShowRedMenu,
   showMenu = false,
   showForm = false,
   setShowMenu,
   setShowForm,
 }) => {
-  const [radio, setRadio] = useState("BRIEF_US");
+  const router = useRouter();
 
+  const [radio, setRadio] = useState("BRIEF_US");
   const [formValue, setFormValue] = useState({
     radio: "BRIEF_US",
     name: "",
@@ -23,8 +26,6 @@ const Navbar = ({
   });
 
   const [error, setError] = useState({});
-
-  const router = useRouter();
 
   const validate = (value) => {
     let emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
@@ -60,16 +61,25 @@ const Navbar = ({
         (document.body.style.position = "static");
     }
   }, [showMenu]);
+
+  const handleBackForm = () => {
+    if (showRedMenu) {
+      setShowForm(false);
+    } else {
+      setShowForm(false);
+      setShowMenu(false);
+    }
+  };
   return (
     <>
       <div
+        style={{
+          transform: scrollY === 0 && "translateY(0)",
+        }}
         className={`${styles.navbar}
         ${showNav && scrollY > 300 ? styles.showNav : ""} 
         ${!showNav && scrollY > 10 ? styles.hideNav : ""} 
         `}
-        style={{
-          transform: scrollY === 0 && "translateY(0)",
-        }}
       >
         <div className={styles.logo} onClick={() => router.push("/")}>
           <PitekLogo
@@ -77,10 +87,17 @@ const Navbar = ({
             rightColor={!showNav ? "#FFF" : "#FF3355"}
           />
         </div>
-        <div className={styles.burger} onClick={() => setShowMenu(true)}>
+        <div
+          className={styles.burger}
+          onClick={() => {
+            setShowMenu(true);
+            setShowRedMenu(true);
+          }}
+        >
           <Burger fill={!showNav ? "#fff" : "#002266"} />
         </div>
       </div>
+      {/* TODO: Menu */}
       <div
         className={`${styles.navMenu} ${showMenu && styles.showMenu} `}
         style={{ visibility: showForm && "visible" }}
@@ -89,7 +106,7 @@ const Navbar = ({
           {/* TODO: RED */}
           <div
             className={`${styles.menuRed} ${
-              showMenu ? styles.showMenu : styles.hideMenu
+              showRedMenu ? styles.showMenu : styles.hideMenu
             }`}
           >
             <div className={styles.arrowPatterns}>
@@ -160,6 +177,7 @@ const Navbar = ({
               onClick={() => {
                 setShowForm(false);
                 setShowMenu(false);
+                setShowRedMenu(false);
               }}
             >
               <Image src={"/icons/close.svg"} width={40} height={40} alt="" />
@@ -281,7 +299,7 @@ const Navbar = ({
                 <button
                   className="btn btn-gray"
                   type="button"
-                  onClick={() => setShowForm(false)}
+                  onClick={handleBackForm}
                 >
                   GO BACK
                 </button>
