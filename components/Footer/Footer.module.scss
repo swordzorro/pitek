@@ -1,0 +1,82 @@
+@import "../../styles/sass/variables";
+
+.footerWrapper {
+  background: $primary-red;
+  color: white;
+  opacity: 1;
+  padding: 2.5% 3%;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 4;
+
+  @media (max-width: 1025px) {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 38px;
+    padding: 40px;
+  }
+
+  .logo {
+    @media (max-width: 450px) {
+      max-width: 90px;
+    }
+  }
+  .footerInfo {
+    display: flex;
+    gap: 100px;
+    flex-wrap: wrap;
+    @media (max-width: 1025px) {
+      gap: 40px;
+      width: 100%;
+      justify-content: space-between;
+      @media (max-width: 629px) {
+        flex-direction: column;
+        gap: 16px;
+      }
+    }
+    > * {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+
+      > p {
+        font-weight: 300;
+        font-size: 16px;
+        line-height: 160%;
+        letter-spacing: 0.02em;
+
+        &:first-child {
+          font-weight: 600;
+          font-size: 18px;
+        }
+      }
+    }
+    .address {
+      max-width: 200px;
+      min-width: 200px;
+    }
+    .contact {
+      max-width: 130px;
+      min-width: 130px;
+      white-space: nowrap;
+    }
+    .sendMessage {
+      width: fit-content;
+      button {
+        white-space: nowrap;
+      }
+    }
+    .social {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      @media (max-width: 450px) {
+        position: absolute;
+        bottom: 44px;
+        right: 40px;
+      }
+    }
+  }
+}
